@@ -1,0 +1,2728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小6算数 6年生まとめテスト A4大問別特訓プリント集（増量版）</title>
+  <style>
+    :root {
+      --paper-width: 210mm;
+      --paper-height: 297mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Yu Gothic UI', Meiryo, 'Noto Sans JP', sans-serif;
+      background-color: #cbd5e1;
+      color: #111827;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* 縦書き分数（小学校算数テスト準拠） */
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 2px;
+      font-size: 0.88em;
+      line-height: 1.02;
+      font-weight: 600;
+    }
+    .frac .num {
+      border-bottom: 1.25px solid #111827;
+      padding: 0 2.5px 1px 2.5px;
+      display: block;
+      text-align: center;
+    }
+    .frac .den {
+      padding: 1px 2.5px 0 2.5px;
+      display: block;
+      text-align: center;
+    }
+    .mixed-num {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 1px;
+    }
+
+    /* 解答欄ボックス（コンパクト高密度版） */
+    .ans-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 56px;
+      height: 24px;
+      border: 1.4px solid #111827;
+      background-color: #ffffff;
+      padding: 1px 5px;
+      font-weight: 700;
+      font-size: 11px;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
+    .ans-box-sm {
+      min-width: 38px;
+      height: 22px;
+    }
+    .ans-box-md {
+      min-width: 82px;
+      height: 24px;
+    }
+    .ans-box-lg {
+      min-width: 122px;
+      height: 24px;
+    }
+    .ans-box-xl {
+      min-width: 158px;
+      height: 24px;
+    }
+
+    /* 記述用解答枠（罫線付き） */
+    .desc-box {
+      border: 1.3px solid #111827;
+      background-image: linear-gradient(to bottom, transparent 19px, #cbd5e1 20px);
+      background-size: 100% 20px;
+      line-height: 20px;
+      padding: 1px 6px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 2px;
+      font-size: 10px;
+      overflow: hidden;
+    }
+
+    /* A4用紙レイアウト（厳密 210mm × 297mm / 余白最小・印字幅190mm） */
+    .a4-sheet {
+      width: var(--paper-width);
+      height: var(--paper-height);
+      background: #ffffff;
+      margin: 14px auto;
+      padding: 8mm 10mm 7mm 10mm;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      scroll-margin-top: 112px;
+    }
+
+    /* スリムヘッダー（約13mm） */
+    .sheet-header {
+      height: 13mm;
+      border-bottom: 1.8px solid #111827;
+      padding-bottom: 1.5mm;
+      margin-bottom: 2mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .sheet-title-badge {
+      background: #111827;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 1px 6px;
+      font-size: 10px;
+      border-radius: 2px;
+      display: inline-block;
+      line-height: 1.35;
+    }
+
+    .name-table {
+      border-collapse: collapse;
+      flex-shrink: 0;
+    }
+    .name-table td {
+      border: 1.2px solid #111827;
+      padding: 1px 5px;
+      font-size: 10px;
+      height: 19px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* 問題エリア本体（約261mmフル活用） */
+    .sheet-body {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* 圧縮フッター（約6mm） */
+    .sheet-footer {
+      height: 6mm;
+      margin-top: 1.5mm;
+      padding-top: 1mm;
+      border-top: 1px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #475569;
+      flex-shrink: 0;
+    }
+
+    .problem-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #111827;
+      font-weight: 800;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+      border-radius: 2px;
+    }
+
+    .q-card {
+      border: 1px solid #94a3b8;
+      border-radius: 3px;
+      background: #ffffff;
+      padding: 4px 7px;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* 赤字解答表示トグル */
+    .inline-ans-text {
+      color: #dc2626;
+      font-weight: 700;
+    }
+    body.hide-inline-ans .inline-ans-text {
+      display: none !important;
+    }
+
+    /* 教科書・本番テスト品質のSVG共通スタイル */
+    .math-svg {
+      display: block;
+      overflow: visible;
+    }
+    .svg-outline {
+      stroke: #111827;
+      stroke-width: 1.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    .svg-thin {
+      stroke: #334155;
+      stroke-width: 1;
+    }
+    .svg-hidden {
+      stroke: #475569;
+      stroke-width: 1.15;
+      stroke-dasharray: 3, 2.5;
+      fill: none;
+    }
+    .svg-axis {
+      stroke: #111827;
+      stroke-width: 1.3;
+      stroke-dasharray: 6, 2, 1.5, 2;
+    }
+    .svg-grid {
+      stroke: #d1d5db;
+      stroke-width: 0.75;
+    }
+    .svg-dim-line {
+      stroke: #475569;
+      stroke-width: 0.95;
+      stroke-dasharray: 2.5, 2;
+    }
+    .svg-label {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Yu Gothic UI', Meiryo, 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+      fill: #111827;
+      paint-order: stroke;
+      stroke: #ffffff;
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+    .svg-vertex {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Yu Gothic UI', Meiryo, 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      fill: #111827;
+      paint-order: stroke;
+      stroke: #ffffff;
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+
+    /* A4印刷専用スタイル */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      html, body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .a4-wrapper {
+        padding: 0 !important;
+        overflow: visible !important;
+      }
+      .a4-sheet {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 8mm 10mm 7mm 10mm !important;
+        box-shadow: none !important;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden !important;
+      }
+      .a4-sheet:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+      .sheet-hidden-by-filter {
+        display: none !important;
+      }
+    }
+
+    /* 小画面での閲覧サポート */
+    @media screen and (max-width: 840px) {
+      .a4-wrapper {
+        overflow-x: auto;
+        padding: 0 8px;
+      }
+      .a4-sheet {
+        margin: 10px 0;
+      }
+    }
+  </style>
+  <style>
+/* Tailwind utilities (generated at build time; no external loads) */
+*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.sticky{position:sticky}.bottom-5{bottom:1.25rem}.right-5{right:1.25rem}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mx-0\.5{margin-left:0.125rem;margin-right:0.125rem}.my-0\.5{margin-top:0.125rem;margin-bottom:0.125rem}.my-1{margin-top:0.25rem;margin-bottom:0.25rem}.mt-0\.5{margin-top:0.125rem}.mt-1\.5{margin-top:0.375rem}.mb-0\.5{margin-bottom:0.125rem}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mr-0\.5{margin-right:0.125rem}.mr-1{margin-right:0.25rem}.mr-1\.5{margin-right:0.375rem}.mt-1{margin-top:0.25rem}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.h-3\.5{height:0.875rem}.h-full{height:100%}.min-h-0{min-height:0px}.w-3\.5{width:0.875rem}.w-\[160px\]{width:160px}.w-\[54px\]{width:54px}.w-\[74px\]{width:74px}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-7xl{max-width:80rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-0\.5{gap:0.125rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-x-1{column-gap:0.25rem}.gap-x-2{column-gap:0.5rem}.gap-x-2\.5{column-gap:0.625rem}.gap-y-0\.5{row-gap:0.125rem}.gap-y-1\.5{row-gap:0.375rem}.gap-y-2{row-gap:0.5rem}.space-y-0\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.125rem * var(--tw-space-y-reverse))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-\[1\.4px\]{border-width:1.4px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-l-4{border-left-width:4px}.border-emerald-400{--tw-border-opacity:1;border-color:rgb(52 211 153 / var(--tw-border-opacity, 1))}.border-slate-500{--tw-border-opacity:1;border-color:rgb(100 116 139 / var(--tw-border-opacity, 1))}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-slate-400{--tw-border-opacity:1;border-color:rgb(148 163 184 / var(--tw-border-opacity, 1))}.border-slate-900{--tw-border-opacity:1;border-color:rgb(15 23 42 / var(--tw-border-opacity, 1))}.bg-amber-400{--tw-bg-opacity:1;background-color:rgb(251 191 36 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-rose-900\/80{background-color:rgb(136 19 55 / 0.8)}.bg-slate-700{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-rose-700{--tw-bg-opacity:1;background-color:rgb(190 18 60 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-50\/50{background-color:rgb(248 250 252 / 0.5)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-1\.5{padding:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.pb-0\.5{padding-bottom:0.125rem}.pb-10{padding-bottom:2.5rem}.pt-1\.5{padding-top:0.375rem}.pt-1{padding-top:0.25rem}.text-center{text-align:center}.text-right{text-align:right}.align-middle{vertical-align:middle}.font-serif{font-family:ui-serif, Georgia, Cambria, "Times New Roman", Times, serif}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[10\.5px\]{font-size:10.5px}.text-\[10px\]{font-size:10px}.text-\[11\.5px\]{font-size:11.5px}.text-\[12px\]{font-size:12px}.text-\[13\.5px\]{font-size:13.5px}.text-\[14px\]{font-size:14px}.text-\[9\.5px\]{font-size:9.5px}.text-\[9px\]{font-size:9px}.font-black{font-weight:900}.font-bold{font-weight:700}.font-semibold{font-weight:600}.italic{font-style:italic}.leading-none{line-height:1}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.text-rose-100{--tw-text-opacity:1;color:rgb(255 228 230 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-0{opacity:0}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:bg-blue-500:hover{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-400:hover{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.hover\:bg-rose-800:hover{--tw-bg-opacity:1;background-color:rgb(159 18 57 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-600:hover{--tw-bg-opacity:1;background-color:rgb(71 85 105 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-amber-400:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(251 191 36 / var(--tw-ring-opacity, 1))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 640px){.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}}
+  </style>
+</head>
+<body class="hide-inline-ans">
+
+  <!-- 全SVG共通パターン・マーカー定義（白黒印刷くっきり対応） -->
+  <svg width="0" height="0" style="position:absolute; pointer-events:none;" aria-hidden="true">
+    <defs>
+      <pattern id="diagonal-hatch" width="6.5" height="6.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="6.5" height="6.5" fill="#e2e8f0" />
+        <line x1="0" y1="0" x2="0" y2="6.5" stroke="#475569" stroke-width="1.25" />
+      </pattern>
+      <pattern id="dot-pattern" width="5.5" height="5.5" patternUnits="userSpaceOnUse">
+        <rect width="5.5" height="5.5" fill="#f1f5f9" />
+        <circle cx="2" cy="2" r="0.9" fill="#64748b" />
+      </pattern>
+      <marker id="arrow-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+        <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#334155" />
+      </marker>
+    </defs>
+  </svg>
+
+  <!-- 操作バー（印刷時は非表示） -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-700">
+    <div class="max-w-7xl mx-auto px-3 py-2">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-2 py-0.5 rounded">A4高密度・増量版</span>
+            <h1 class="text-sm sm:text-base font-bold tracking-tight">6年生まとめテスト 小6算数・大問別特訓プリント集（全15ページ）</h1>
+          </div>
+          <p class="text-[11px] text-slate-300 mt-0.5">印字幅190mmフル活用・全12単元計122問以上＋解答3枚。ボタン1つで全数値＆比例図形を再生成！</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5">
+          <!-- 単元ジャンプ用ドロップダウン -->
+          <select id="unit-jump" aria-label="単元へジャンプ" class="bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer">
+            <option value="">▼ 単元へジャンプ...</option>
+            <option value="1">No.1 分数の計算（20問）</option>
+            <option value="2">No.2 積や商の大きさ比べ（12問）</option>
+            <option value="3">No.3 数直線と分数の立式（6大問）</option>
+            <option value="4">No.4 データの活用（3大問・10問）</option>
+            <option value="5">No.5 場合の数（12問）</option>
+            <option value="6">No.6 比と比の利用（10問）</option>
+            <option value="7">No.7 文字と式（14問）</option>
+            <option value="8">No.8 対称な図形（8問）</option>
+            <option value="9">No.9 速さ・縮図と拡大図（10問）</option>
+            <option value="10">No.10 円・おうぎ形・円柱（8問）</option>
+            <option value="11">No.11 角柱の体積と説明（4大問）</option>
+            <option value="12">No.12 ともなって変わる量と規則性（8問）</option>
+            <option value="ans-1">解答プリント 1（No.1〜4）</option>
+            <option value="ans-2">解答プリント 2（No.5〜8）</option>
+            <option value="ans-3">解答プリント 3（No.9〜12）</option>
+          </select>
+
+          <button id="btn-regenerate" class="bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 font-bold text-xs px-3 py-1.5 rounded-lg shadow transition flex items-center gap-1 cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            新しい数字で作り直す
+          </button>
+
+          <button id="btn-toggle-ans" class="bg-slate-700 hover:bg-slate-600 active:scale-95 text-white font-semibold text-xs px-3 py-1.5 rounded-lg border border-slate-500 transition flex items-center gap-1 cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            <span id="toggle-ans-label">赤字解答：OFF</span>
+          </button>
+
+          <button id="btn-print" class="bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow transition flex items-center gap-1 cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            A4で印刷 / PDF保存
+          </button>
+        </div>
+      </div>
+
+      <!-- クイックフィルターボタン -->
+      <div class="mt-1.5 pt-1.5 border-t border-slate-800 flex items-center gap-1 overflow-x-auto pb-0.5 text-[11px]" id="filter-bar">
+        <button data-filter="all" class="filter-btn bg-amber-400 text-slate-950 font-bold px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">全15枚</button>
+        <button data-filter="1" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">1.分数計算(20)</button>
+        <button data-filter="2" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">2.大きさ比べ(12)</button>
+        <button data-filter="3" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">3.数直線立式(6)</button>
+        <button data-filter="4" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">4.データ活用(10)</button>
+        <button data-filter="5" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">5.場合の数(12)</button>
+        <button data-filter="6" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">6.比の利用(10)</button>
+        <button data-filter="7" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">7.文字と式(14)</button>
+        <button data-filter="8" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">8.対称図形(8)</button>
+        <button data-filter="9" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">9.速さ・縮図(10)</button>
+        <button data-filter="10" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">10.円・円柱(8)</button>
+        <button data-filter="11" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">11.角柱体積(4)</button>
+        <button data-filter="12" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">12.規則性(8)</button>
+        <button data-filter="ans" class="filter-btn bg-rose-900/80 hover:bg-rose-800 text-rose-100 px-2 py-0.5 rounded whitespace-nowrap cursor-pointer">解答(3枚)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- トースト通知 -->
+  <div id="toast" class="no-print fixed bottom-5 right-5 z-50 bg-slate-900 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-xl border border-emerald-400 opacity-0 pointer-events-none transition-opacity duration-300">
+    新しい数値で全15ページを作り直しました！
+  </div>
+
+  <!-- A4プリント出力コンテナ -->
+  <main id="workbook-container" class="a4-wrapper pb-10"></main>
+
+  <script>
+    // =========================================================================
+    // 共通ユーティリティ関数（乱数・分数計算・ヘッダー/フッター生成）
+    // =========================================================================
+    function randInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function pickRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function shuffle(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function gcd(a, b) {
+      let x = Math.abs(a);
+      let y = Math.abs(b);
+      while (y !== 0) {
+        const t = y;
+        y = x % y;
+        x = t;
+      }
+      return x || 1;
+    }
+
+    function reduceFrac(n, d) {
+      const g = gcd(n, d);
+      return { n: n / g, d: d / g };
+    }
+
+    function fracHTML(n, d) {
+      return `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`;
+    }
+
+    function mixedFracHTML(whole, n, d) {
+      return `<span class="mixed-num"><span>${whole}</span>${fracHTML(n, d)}</span>`;
+    }
+
+    function reducedFracHTML(n, d) {
+      const r = reduceFrac(n, d);
+      if (r.d === 1) return `${r.n}`;
+      return fracHTML(r.n, r.d);
+    }
+
+    function formatFracText(n, d) {
+      const r = reduceFrac(n, d);
+      if (r.d === 1) return `${r.n}`;
+      return `${r.n}/${r.d}`;
+    }
+
+    // スリムヘッダー（高さ13mm・印字幅190mm最適化）
+    function createSheetHeader(num, title, subtitle, totalPoints) {
+      return `
+        <div class="sheet-header">
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="sheet-title-badge">小6算数 特訓 No.${num}</span>
+              <h2 class="text-[13.5px] font-black tracking-tight text-slate-900 truncate">${title}</h2>
+            </div>
+            <p class="text-[10px] text-slate-600 mt-0.5 truncate">★ポイント：${subtitle}</p>
+          </div>
+          <table class="name-table">
+            <tr>
+              <td class="bg-slate-100 font-bold text-center">組・番</td>
+              <td class="w-[74px] text-right text-slate-600">組　　番</td>
+              <td class="bg-slate-100 font-bold text-center">得点</td>
+              <td class="w-[54px] text-right font-bold">／${totalPoints}</td>
+            </tr>
+            <tr>
+              <td class="bg-slate-100 font-bold text-center">名前</td>
+              <td colspan="3" class="w-[160px]"></td>
+            </tr>
+          </table>
+        </div>
+      `;
+    }
+
+    // 圧縮フッター（高さ6mm）
+    function createSheetFooter(label) {
+      return `
+        <div class="sheet-footer">
+          <span>6年生まとめテスト（小6算数）・A4大問別反復特訓プリント</span>
+          <span class="font-bold text-slate-700">- ${label} -</span>
+        </div>
+      `;
+    }
+
+    // 方眼グリッド生成共通ヘルパー
+    function buildGridSVG(w, h, step) {
+      let g = '';
+      for (let x = 0; x <= w; x += step) {
+        g += `<line x1="${x}" y1="0" x2="${x}" y2="${h}" class="svg-grid"/>`;
+      }
+      for (let y = 0; y <= h; y += step) {
+        g += `<line x1="0" y1="${y}" x2="${w}" y2="${y}" class="svg-grid"/>`;
+      }
+      return g;
+    }
+
+    // =========================================================================
+    // プリント1：分数の計算（20問・2列×10行）
+    // =========================================================================
+    function generateSheet1() {
+      const problems = [];
+      const usedKeys = new Set();
+
+      // (1)〜(5) 分数のかけ算（約分が発生する組）
+      while (problems.length < 5) {
+        const d1 = pickRandom([4, 5, 6, 7, 8, 9, 10, 12, 14]);
+        const d2 = pickRandom([4, 5, 6, 7, 8, 9, 10, 12, 15]);
+        const n1 = randInt(2, d1 - 1);
+        const n2 = randInt(2, d2 - 1);
+        if (gcd(n1, d1) !== 1 || gcd(n2, d2) !== 1) continue;
+        if (gcd(n1, d2) === 1 && gcd(n2, d1) === 1) continue;
+        const key = `m:${n1}/${d1}*${n2}/${d2}`;
+        if (usedKeys.has(key)) continue;
+        usedKeys.add(key);
+        const num = n1 * n2;
+        const den = d1 * d2;
+        problems.push({
+          expr: `${fracHTML(n1, d1)} × ${fracHTML(n2, d2)}`,
+          ansHTML: reducedFracHTML(num, den),
+          ansText: formatFracText(num, den)
+        });
+      }
+
+      // (6)〜(10) 分数のわり算
+      while (problems.length < 10) {
+        const d1 = pickRandom([3, 4, 5, 6, 7, 8, 9, 10, 12]);
+        const d2 = pickRandom([3, 4, 5, 6, 7, 8, 9, 10]);
+        const n1 = randInt(2, d1 - 1);
+        const n2 = randInt(2, d2 + 3);
+        if (gcd(n1, d1) !== 1 || gcd(n2, d2) !== 1 || n2 === d2) continue;
+        const key = `d:${n1}/${d1}/${n2}/${d2}`;
+        if (usedKeys.has(key)) continue;
+        usedKeys.add(key);
+        const num = n1 * d2;
+        const den = d1 * n2;
+        problems.push({
+          expr: `${fracHTML(n1, d1)} ÷ ${fracHTML(n2, d2)}`,
+          ansHTML: reducedFracHTML(num, den),
+          ansText: formatFracText(num, den)
+        });
+      }
+
+      // (11)〜(15) 3つの数の乗除
+      for (let i = 0; i < 5; i++) {
+        if (i === 0 || i === 4) {
+          const k = pickRandom([3, 4, 5, 6]);
+          const d1 = k * pickRandom([2, 3]);
+          let n1 = randInt(2, d1 - 1);
+          while (gcd(n1, d1) !== 1) n1 = randInt(2, d1 - 1);
+          const d2 = pickRandom([4, 6, 8, 9]);
+          let n2 = randInt(2, d2 + 2);
+          while (gcd(n2, d2) !== 1 || n2 === d2) n2 = randInt(2, d2 + 2);
+          const num = n1 * n2 * k;
+          const den = d1 * d2;
+          problems.push({
+            expr: i === 0
+              ? `${fracHTML(n1, d1)} × ${fracHTML(n2, d2)} × ${k}`
+              : `${k} × ${fracHTML(n1, d1)} × ${fracHTML(n2, d2)}`,
+            ansHTML: reducedFracHTML(num, den),
+            ansText: formatFracText(num, den)
+          });
+        } else if (i === 1) {
+          const k = pickRandom([2, 3, 4]);
+          const n1 = k * pickRandom([2, 3]);
+          let d1 = n1 + pickRandom([5, 7, 9]);
+          while (gcd(n1, d1) !== 1) d1++;
+          const d2 = pickRandom([3, 5, 6, 7]);
+          let n2 = randInt(2, d2 - 1);
+          while (gcd(n2, d2) !== 1) n2 = randInt(2, d2 - 1);
+          const num = n1 * n2;
+          const den = d1 * k * d2;
+          problems.push({
+            expr: `${fracHTML(n1, d1)} ÷ ${k} × ${fracHTML(n2, d2)}`,
+            ansHTML: reducedFracHTML(num, den),
+            ansText: formatFracText(num, den)
+          });
+        } else if (i === 2) {
+          const d1 = pickRandom([4, 5, 6, 8, 9]);
+          let n1 = randInt(2, d1 - 1);
+          while (gcd(n1, d1) !== 1) n1 = randInt(2, d1 - 1);
+          const d2 = pickRandom([3, 5, 7, 8]);
+          let n2 = randInt(2, d2 - 1);
+          while (gcd(n2, d2) !== 1) n2 = randInt(2, d2 - 1);
+          const d3 = pickRandom([3, 4, 6, 8]);
+          let n3 = randInt(2, d3 - 1);
+          while (gcd(n3, d3) !== 1) n3 = randInt(2, d3 - 1);
+          const num = n1 * n2 * d3;
+          const den = d1 * d2 * n3;
+          problems.push({
+            expr: `${fracHTML(n1, d1)} × ${fracHTML(n2, d2)} ÷ ${fracHTML(n3, d3)}`,
+            ansHTML: reducedFracHTML(num, den),
+            ansText: formatFracText(num, den)
+          });
+        } else {
+          const d1 = pickRandom([3, 4, 5, 6, 8]);
+          let n1 = randInt(2, d1 - 1);
+          while (gcd(n1, d1) !== 1) n1 = randInt(2, d1 - 1);
+          const d2 = pickRandom([3, 4, 5, 7]);
+          let n2 = randInt(2, d2 - 1);
+          while (gcd(n2, d2) !== 1) n2 = randInt(2, d2 - 1);
+          const d3 = pickRandom([4, 5, 6, 9]);
+          let n3 = randInt(2, d3 - 1);
+          while (gcd(n3, d3) !== 1) n3 = randInt(2, d3 - 1);
+          const num = n1 * d2 * n3;
+          const den = d1 * n2 * d3;
+          problems.push({
+            expr: `${fracHTML(n1, d1)} ÷ ${fracHTML(n2, d2)} × ${fracHTML(n3, d3)}`,
+            ansHTML: reducedFracHTML(num, den),
+            ansText: formatFracText(num, den)
+          });
+        }
+      }
+
+      // (16)〜(20) 分配法則の工夫
+      for (let i = 0; i < 5; i++) {
+        const isAdd = i % 2 === 0;
+        const b = pickRandom([5, 7, 8, 9, 11, 13, 14, 15]);
+        let a = randInt(2, b - 1);
+        while (gcd(a, b) !== 1) a = randInt(2, b - 1);
+        const d = pickRandom([5, 6, 7, 8, 9]);
+        const m = pickRandom([1, 2]);
+        let c, e;
+        if (isAdd) {
+          e = randInt(1, d - 1);
+          while (gcd(e, d) !== 1) e = randInt(1, d - 1);
+          c = d * m - e;
+          if (c <= 0 || c % d === 0) {
+            e = 1;
+            c = d * m - 1;
+          }
+        } else {
+          e = randInt(2, d - 1);
+          while (gcd(e, d) !== 1) e = randInt(2, d - 1);
+          c = d * m + e;
+        }
+        const op = isAdd ? '＋' : '－';
+        const num = a * m;
+        const den = b;
+        problems.push({
+          expr: `${fracHTML(a, b)} × ${fracHTML(c, d)} ${op} ${fracHTML(a, b)} × ${fracHTML(e, d)}`,
+          ansHTML: reducedFracHTML(num, den),
+          ansText: formatFracText(num, den)
+        });
+      }
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-1" data-unit="1">
+            ${createSheetHeader(1, '【大問1特訓】分数の計算（乗除・3数の計算・分配法則・全20問）', '途中でしっかり約分しよう！(16)〜(20)は同じ分数でまとめる工夫を使おう！', 20)}
+            <div class="sheet-body">
+              <div class="text-[11.5px] font-bold flex items-center shrink-0">
+                <span class="problem-num">1</span>
+                <span>次の計算をしなさい。答えが約分できるときは、いちばん簡単な分数で答えなさい。（途中式は空いているスペースに書くこと）</span>
+              </div>
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 flex-1 min-h-0" style="grid-template-rows: repeat(10, minmax(0, 1fr));">
+                ${problems.map((p, idx) => `
+                  <div class="q-card flex items-center justify-between gap-1.5">
+                    <div class="flex items-center text-[12px] leading-none">
+                      <span class="font-bold mr-1.5 text-[10.5px] text-slate-700">(${idx + 1})</span>
+                      <span>${p.expr}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                      <span class="text-[10px] text-slate-300 select-none">＝</span>
+                      <div class="ans-box"><span class="inline-ans-text">${p.ansHTML}</span></div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ${createSheetFooter('1')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント1【分数の計算（全20問）】</h4>
+            <div class="grid grid-cols-5 gap-x-2 gap-y-0.5 text-[10.5px]">
+              ${problems.map((p, i) => `<div>(${i + 1}) ${p.ansText}</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント2：積や商の大きさ比べ（12問・2列×6行）
+    // =========================================================================
+    function generateSheet2() {
+      const labels = ['ア', 'イ', 'ウ', 'エ', 'オ'];
+      const sq = '<span class="inline-block w-3.5 h-3.5 border-[1.4px] border-slate-900 align-middle mx-0.5 bg-white"></span>';
+      const questions = [];
+
+      const properFracs = [
+        { n: 2, d: 3 }, { n: 3, d: 4 }, { n: 3, d: 5 }, { n: 4, d: 5 },
+        { n: 5, d: 6 }, { n: 4, d: 7 }, { n: 5, d: 8 }, { n: 7, d: 9 }
+      ];
+      const improperFracs = [
+        { n: 5, d: 4 }, { n: 6, d: 5 }, { n: 7, d: 5 }, { n: 8, d: 5 },
+        { n: 7, d: 6 }, { n: 9, d: 7 }, { n: 11, d: 8 }
+      ];
+      const mixedFracs = [
+        { w: 1, n: 1, d: 3 }, { w: 1, n: 2, d: 5 }, { w: 2, n: 1, d: 3 },
+        { w: 1, n: 3, d: 4 }, { w: 2, n: 1, d: 2 }
+      ];
+      const smallDecs = [0.2, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95];
+      const largeDecs = [1.1, 1.2, 1.4, 1.5, 2.3];
+
+      for (let i = 0; i < 12; i++) {
+        const findLarger = i % 2 === 0;
+        const pf1 = pickRandom(properFracs);
+        const pf2 = pickRandom(properFracs.filter(f => f.n !== pf1.n || f.d !== pf1.d));
+        const imp = pickRandom(improperFracs);
+        const mix = pickRandom(mixedFracs);
+        const sDec = pickRandom(smallDecs);
+        const lDec = pickRandom(largeDecs);
+
+        const pool = [
+          { html: `${sq}×${fracHTML(pf1.n, pf1.d)}`, isLarger: false, isSmaller: true },
+          { html: `${sq}×${fracHTML(imp.n, imp.d)}`, isLarger: true, isSmaller: false },
+          { html: `${sq}÷${fracHTML(pf2.n, pf2.d)}`, isLarger: true, isSmaller: false },
+          { html: `${sq}÷${mixedFracHTML(mix.w, mix.n, mix.d)}`, isLarger: false, isSmaller: true }
+        ];
+
+        const fifthType = i % 5;
+        if (fifthType === 0) {
+          pool.push({ html: `${sq}÷${sDec}`, isLarger: true, isSmaller: false });
+        } else if (fifthType === 1) {
+          pool.push({ html: `${sq}×${sDec}`, isLarger: false, isSmaller: true });
+        } else if (fifthType === 2) {
+          pool.push({ html: `${sq}÷1`, isLarger: false, isSmaller: false });
+        } else if (fifthType === 3) {
+          pool.push({ html: `${sq}÷${lDec}`, isLarger: false, isSmaller: true });
+        } else {
+          pool.push({ html: `${sq}×1`, isLarger: false, isSmaller: false });
+        }
+
+        const opts = shuffle(pool);
+        const correctLabels = [];
+        opts.forEach((o, idx) => {
+          if (findLarger ? o.isLarger : o.isSmaller) correctLabels.push(labels[idx]);
+        });
+
+        questions.push({
+          targetText: findLarger ? '大きく' : '小さく',
+          opts,
+          ansText: correctLabels.join('、')
+        });
+      }
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-2" data-unit="2">
+            ${createSheetHeader(2, '【大問2特訓】積や商の大きさ比べ（全て選ぶ問題・全12問）', '1より小さい数をかけると小さく、1より小さい数でわると大きくなる！×1・÷1は等しい！', 12)}
+            <div class="sheet-body">
+              <div class="text-[11.5px] font-bold flex items-center shrink-0">
+                <span class="problem-num">2</span>
+                <span>次の(1)〜(12)で、${sq} の中には 0 より大きい同じ数が入ります。条件にあう式をア〜オの中から<span class="underline">全て</span>選びなさい。</span>
+              </div>
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-2 flex-1 min-h-0" style="grid-template-rows: repeat(6, minmax(0, 1fr));">
+                ${questions.map((q, idx) => `
+                  <div class="q-card flex flex-col justify-between">
+                    <div class="flex items-center justify-between gap-1 text-[10.5px]">
+                      <div>
+                        <span class="font-bold mr-1">(${idx + 1})</span>
+                        ${sq}より <span class="font-black underline text-[11px]">${q.targetText}なるもの</span>
+                      </div>
+                      <div class="ans-box ans-box-md shrink-0"><span class="inline-ans-text">${q.ansText}</span></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-x-1 gap-y-0.5 text-[11px] items-center pt-1 border-t border-slate-100">
+                      ${q.opts.map((o, j) => `
+                        <div class="flex items-center gap-0.5 whitespace-nowrap">
+                          <span class="font-bold text-[10px]">${labels[j]}</span>
+                          <span>${o.html}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ${createSheetFooter('2')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント2【積や商の大きさ比べ（全12問）】</h4>
+            <div class="grid grid-cols-4 gap-x-2 gap-y-0.5 text-[10.5px]">
+              ${questions.map((q, i) => `<div>(${i + 1}) ${q.ansText}</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント3：数直線と分数の立式（6大問・2列×3行・小問計16問）
+    // =========================================================================
+    function generateSheet3() {
+      const scenarios = [
+        { item: '鉄のパイプ', unitA: 'kg', unitB: 'm', labelA: '重さ', labelB: '長さ' },
+        { item: 'ペンキ', unitA: 'm²', unitB: 'dL', labelA: 'ぬれる面積', labelB: 'ペンキの量' },
+        { item: 'リボン', unitA: 'm', unitB: '分', labelA: 'できた長さ', labelB: '時間' },
+        { item: '針金', unitA: 'g', unitB: 'm', labelA: '重さ', labelB: '長さ' }
+      ];
+
+      const blocks = [];
+      const ansAll = [];
+
+      // [1]〜[4] 数直線SVG付き（各3小問＝12小問）
+      for (let i = 0; i < 4; i++) {
+        const sc = scenarios[i];
+        const dB = pickRandom([3, 4, 5, 7, 8]);
+        let nB = randInt(2, dB - 1);
+        while (gcd(nB, dB) !== 1) nB = randInt(2, dB - 1);
+
+        const dA = pickRandom([3, 4, 5, 6, 7, 9]);
+        let nA = randInt(2, dA + 2);
+        while (gcd(nA, dA) !== 1 || nA === dA) nA = randInt(2, dA + 2);
+
+        const formulaAns = `${reducedFracHTML(nA, dA)} ÷ ${reducedFracHTML(nB, dB)}`;
+        const valAns = reducedFracHTML(nA * dB, dA * nB);
+        const ratio = Math.min(Math.max(nB / dB, 0.28), 0.72);
+        const midX = Math.round(58 + (204 - 58) * ratio);
+
+        ansAll.push(`[${i + 1}] (1) ア:${formatFracText(nA, dA)}, イ:${formatFracText(nB, dB)} (2) ${formatFracText(nA, dA)}÷${formatFracText(nB, dB)} (3) ${formatFracText(nA * dB, dA * nB)}${sc.unitA}`);
+
+        blocks.push(`
+          <div class="q-card flex flex-col justify-between">
+            <div class="text-[10.5px] leading-snug">
+              <span class="font-bold mr-0.5">[${i + 1}]</span>
+              ${fracHTML(nB, dB)}${sc.unitB}で${sc.labelA}が${fracHTML(nA, dA)}${sc.unitA}の${sc.item}。1${sc.unitB}あたりの${sc.labelA}を求める。
+            </div>
+            <div class="flex justify-center my-0.5">
+              <svg width="246" height="72" viewBox="0 0 246 72" class="math-svg">
+                <text x="2" y="21" font-size="8.5" class="svg-label">${sc.labelA}</text>
+                <text x="2" y="30" font-size="8" fill="#475569">(${sc.unitA})</text>
+                <line x1="50" y1="24" x2="236" y2="24" stroke="#111827" stroke-width="1.5" marker-end="url(#arrow-end)"/>
+                <line x1="58" y1="19" x2="58" y2="29" stroke="#111827" stroke-width="1.4"/>
+                <line x1="${midX}" y1="19" x2="${midX}" y2="29" stroke="#111827" stroke-width="1.4"/>
+                <line x1="204" y1="19" x2="204" y2="29" stroke="#111827" stroke-width="1.4"/>
+                <text x="58" y="14" font-size="9" text-anchor="middle" class="svg-label">0</text>
+                <rect x="${midX - 11}" y="2" width="22" height="14" rx="2" fill="#ffffff" stroke="#111827" stroke-width="1.1"/>
+                <text x="${midX}" y="12" font-size="9" text-anchor="middle" font-weight="bold">ア</text>
+                <rect x="193" y="2" width="22" height="14" rx="2" fill="#f1f5f9" stroke="#111827" stroke-width="1.1" stroke-dasharray="2,1.5"/>
+                <text x="204" y="12" font-size="9.5" text-anchor="middle" font-weight="bold">□</text>
+
+                <line x1="58" y1="29" x2="58" y2="46" class="svg-dim-line"/>
+                <line x1="${midX}" y1="29" x2="${midX}" y2="46" class="svg-dim-line"/>
+                <line x1="204" y1="29" x2="204" y2="46" class="svg-dim-line"/>
+
+                <text x="2" y="51" font-size="8.5" class="svg-label">${sc.labelB}</text>
+                <text x="2" y="60" font-size="8" fill="#475569">(${sc.unitB})</text>
+                <line x1="50" y1="51" x2="236" y2="51" stroke="#111827" stroke-width="1.5" marker-end="url(#arrow-end)"/>
+                <line x1="58" y1="46" x2="58" y2="56" stroke="#111827" stroke-width="1.4"/>
+                <line x1="${midX}" y1="46" x2="${midX}" y2="56" stroke="#111827" stroke-width="1.4"/>
+                <line x1="204" y1="46" x2="204" y2="56" stroke="#111827" stroke-width="1.4"/>
+                <text x="58" y="68" font-size="9" text-anchor="middle" class="svg-label">0</text>
+                <rect x="${midX - 11}" y="57" width="22" height="13" rx="2" fill="#ffffff" stroke="#111827" stroke-width="1.1"/>
+                <text x="${midX}" y="67" font-size="9" text-anchor="middle" font-weight="bold">イ</text>
+                <text x="204" y="68" font-size="9.5" text-anchor="middle" class="svg-label">1</text>
+              </svg>
+            </div>
+            <div class="space-y-1 text-[10px]">
+              <div class="flex items-center justify-between">
+                <span>(1) ア・イの数：</span>
+                <div class="flex items-center gap-1">ア<div class="ans-box ans-box-sm"><span class="inline-ans-text">${reducedFracHTML(nA, dA)}</span></div> イ<div class="ans-box ans-box-sm"><span class="inline-ans-text">${reducedFracHTML(nB, dB)}</span></div></div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>(2) □を求める式：</span>
+                <div class="ans-box ans-box-md"><span class="inline-ans-text">${formulaAns}</span></div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>(3) 実際の答え：</span>
+                <div><div class="ans-box ans-box-sm"><span class="inline-ans-text">${valAns}</span></div> ${sc.unitA}</div>
+              </div>
+            </div>
+          </div>
+        `);
+      }
+
+      // [5] 文章から「何倍か」の立式と答え（2小問）
+      const d5a = pickRandom([3, 4, 5, 7]);
+      let n5a = randInt(2, d5a + 2);
+      while (gcd(n5a, d5a) !== 1 || n5a === d5a) n5a = randInt(2, d5a + 2);
+      const d5b = pickRandom([4, 5, 6, 8, 9]);
+      let n5b = randInt(2, d5b - 1);
+      while (gcd(n5b, d5b) !== 1) n5b = randInt(2, d5b - 1);
+      const ans5a = reduceFrac(n5a * d5b, d5a * n5b);
+      const ans5b = reduceFrac(n5b * d5a, d5b * n5a);
+      ansAll.push(`[5] (1) 式:${formatFracText(n5a, d5a)}÷${formatFracText(n5b, d5b)} 答え:${formatFracText(ans5a.n, ans5a.d)}倍　(2) 式:${formatFracText(n5b, d5b)}÷${formatFracText(n5a, d5a)} 答え:${formatFracText(ans5b.n, ans5b.d)}倍`);
+
+      blocks.push(`
+        <div class="q-card flex flex-col justify-between">
+          <div class="text-[10.5px] leading-snug">
+            <span class="font-bold mr-0.5">[5]</span>
+            赤いテープは ${fracHTML(n5a, d5a)}m、白いテープは ${fracHTML(n5b, d5b)}m です。次の(1)、(2)の式と答えを書きなさい。
+          </div>
+          <div class="space-y-2 text-[10px] my-1">
+            <div class="border border-slate-200 rounded p-1.5 bg-slate-50/50">
+              <div class="mb-1">(1) 赤いテープは、白いテープの<span class="font-bold underline">何倍</span>ですか。</div>
+              <div class="flex items-center justify-between gap-1">
+                <div>式：<div class="ans-box ans-box-md"><span class="inline-ans-text">${fracHTML(n5a, d5a)}÷${fracHTML(n5b, d5b)}</span></div></div>
+                <div>答：<div class="ans-box ans-box-sm"><span class="inline-ans-text">${reducedFracHTML(ans5a.n, ans5a.d)}</span></div>倍</div>
+              </div>
+            </div>
+            <div class="border border-slate-200 rounded p-1.5 bg-slate-50/50">
+              <div class="mb-1">(2) 白いテープは、赤いテープの<span class="font-bold underline">何倍</span>ですか。</div>
+              <div class="flex items-center justify-between gap-1">
+                <div>式：<div class="ans-box ans-box-md"><span class="inline-ans-text">${fracHTML(n5b, d5b)}÷${fracHTML(n5a, d5a)}</span></div></div>
+                <div>答：<div class="ans-box ans-box-sm"><span class="inline-ans-text">${reducedFracHTML(ans5b.n, ans5b.d)}</span></div>倍</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `);
+
+      // [6] かけ算・わり算の使い分け（ロープ3題＝3小問）
+      const d6 = pickRandom([5, 7, 9, 11, 14]);
+      let n6 = randInt(2, d6 - 2);
+      while (gcd(n6, d6) !== 1) n6 = randInt(2, d6 - 2);
+      const m6 = pickRandom([2, 3, 4]);
+      ansAll.push(`[6] (1) ${formatFracText(n6, d6)}×${m6}　(2) ${m6}÷${formatFracText(n6, d6)}　(3) ${formatFracText(n6, d6)}÷${m6}`);
+
+      blocks.push(`
+        <div class="q-card flex flex-col justify-between">
+          <div class="text-[10.5px] leading-snug">
+            <span class="font-bold mr-0.5">[6]</span>
+            1mの重さが ${fracHTML(n6, d6)}kg の黒いロープと、${m6}mの重さが ${fracHTML(n6, d6)}kg の白いロープがあります。次の式を書きなさい。（計算不要）
+          </div>
+          <div class="space-y-1.5 text-[10px]">
+            <div class="flex items-center justify-between gap-1">
+              <span>(1) 黒いロープ ${m6}mの重さは何kgか</span>
+              <div class="ans-box ans-box-md"><span class="inline-ans-text">${fracHTML(n6, d6)} × ${m6}</span></div>
+            </div>
+            <div class="flex items-center justify-between gap-1">
+              <span>(2) 黒いロープ ${m6}kgの長さは何mか</span>
+              <div class="ans-box ans-box-md"><span class="inline-ans-text">${m6} ÷ ${fracHTML(n6, d6)}</span></div>
+            </div>
+            <div class="flex items-center justify-between gap-1">
+              <span>(3) 白いロープ 1mの重さは何kgか</span>
+              <div class="ans-box ans-box-md"><span class="inline-ans-text">${fracHTML(n6, d6)} ÷ ${m6}</span></div>
+            </div>
+          </div>
+        </div>
+      `);
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-3" data-unit="3">
+            ${createSheetHeader(3, '【大問3・4特訓】数直線と分数の立式・何倍（全6大問・計17小問）', '「1にあたる量」を求めるときは、1の量でわる！「何倍か」は比べられる量÷もとにする量！', 17)}
+            <div class="sheet-body">
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-2 flex-1 min-h-0" style="grid-template-rows: repeat(3, minmax(0, 1fr));">
+                ${blocks.join('')}
+              </div>
+            </div>
+            ${createSheetFooter('3')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント3【数直線と分数の立式（全6大問）】</h4>
+            <div class="grid grid-cols-1 gap-0.5 text-[10px]">
+              ${ansAll.map(a => `<div>${a}</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント4：データの活用（3大問・小問計10問）
+    // =========================================================================
+    function generateSheet4() {
+      // 大問1：ドットプロット（11人・平均値が整数）
+      const minVal = randInt(8, 13);
+      const modeVal = minVal + 2;
+      const medVal = minVal + 3;
+      const baseArr = [
+        minVal,
+        minVal + 1,
+        modeVal, modeVal, modeVal,
+        medVal,
+        medVal + 1,
+        medVal + 2,
+        medVal + 4,
+        medVal + 5,
+        medVal + 6
+      ];
+      let sum = baseArr.reduce((a, b) => a + b, 0);
+      const rem = sum % 11;
+      if (rem !== 0) {
+        baseArr[10] += (11 - rem);
+        sum = baseArr.reduce((a, b) => a + b, 0);
+      }
+      const meanVal = sum / 11;
+      const targetBook = medVal + 1;
+      const maxX = baseArr[10] + 1;
+      const counts = {};
+      baseArr.forEach(v => { counts[v] = (counts[v] || 0) + 1; });
+
+      let dotsSVG = '';
+      const span = maxX - minVal;
+      const startX = 22, endX = 368;
+      const stepX = (endX - startX) / span;
+      for (let v = minVal; v <= maxX; v++) {
+        const cx = startX + (v - minVal) * stepX;
+        dotsSVG += `<line x1="${cx}" y1="10" x2="${cx}" y2="54" stroke="#e2e8f0" stroke-width="0.8"/>`;
+        dotsSVG += `<line x1="${cx}" y1="52" x2="${cx}" y2="58" stroke="#111827" stroke-width="1.2"/>`;
+        dotsSVG += `<text x="${cx}" y="69" font-size="8.5" text-anchor="middle" class="svg-label">${v}</text>`;
+        const c = counts[v] || 0;
+        for (let k = 0; k < c; k++) {
+          dotsSVG += `<circle cx="${cx}" cy="${45 - k * 11}" r="3.8" fill="#1e293b"/>`;
+        }
+      }
+      const expAns1 = `データの中央値は${medVal}冊であり、あいさんの${targetBook}冊は中央値より多いから。`;
+
+      // 大問2：ヒストグラム（30人・ソフトボール投げ）
+      const bins = [
+        { s: 10, e: 15, c: randInt(2, 4) },
+        { s: 15, e: 20, c: randInt(4, 5) },
+        { s: 20, e: 25, c: randInt(7, 9) },
+        { s: 25, e: 30, c: randInt(4, 6) },
+        { s: 30, e: 35, c: 0 },
+        { s: 35, e: 40, c: randInt(2, 3) }
+      ];
+      bins[4].c = 30 - bins.reduce((acc, b) => acc + b.c, 0);
+      const topC = bins[5].c;
+      const rankStart = topC + 1;
+      const rankEnd = topC + bins[4].c;
+      const targetDist = randInt(31, 34);
+      const rangeCount = bins[1].c + bins[2].c; // 15m以上25m未満
+
+      let histSVG = '';
+      const baseY = 90, unitY = 8;
+      for (let n = 2; n <= 10; n += 2) {
+        const y = baseY - n * unitY;
+        histSVG += `<line x1="32" y1="${y}" x2="296" y2="${y}" stroke="#cbd5e1" stroke-width="0.8"/>`;
+        histSVG += `<text x="27" y="${y + 3}" font-size="8.5" text-anchor="end" class="svg-label">${n}</text>`;
+      }
+      bins.forEach((b, idx) => {
+        const bx = 32 + idx * 44;
+        const bh = b.c * unitY;
+        histSVG += `<rect x="${bx}" y="${baseY - bh}" width="44" height="${bh}" fill="url(#diagonal-hatch)" class="svg-outline"/>`;
+        histSVG += `<text x="${bx}" y="${baseY + 12}" font-size="8.5" text-anchor="middle" class="svg-label">${b.s}</text>`;
+        if (idx === bins.length - 1) {
+          histSVG += `<text x="${bx + 44}" y="${baseY + 12}" font-size="8.5" text-anchor="middle" class="svg-label">${b.e}</text>`;
+        }
+      });
+
+      // 大問3：2つのヒストグラム比較（A小とB小の1週間の家庭学習時間・各25人）
+      const distA = [randInt(3, 4), randInt(6, 7), randInt(6, 7), randInt(4, 5), 0];
+      distA[4] = 25 - distA.reduce((a, b) => a + b, 0);
+      const distB = [randInt(1, 2), randInt(2, 3), randInt(5, 6), randInt(7, 8), 0];
+      distB[4] = 25 - distB.reduce((a, b) => a + b, 0);
+
+      function drawMiniHist(arr, title, fillId) {
+        let s = `<text x="108" y="10" font-size="9" text-anchor="middle" class="svg-label">${title}</text>`;
+        const bY = 82, uY = 6.5;
+        for (let n = 2; n <= 10; n += 2) {
+          const y = bY - n * uY;
+          s += `<line x1="24" y1="${y}" x2="184" y2="${y}" stroke="#e2e8f0" stroke-width="0.8"/>`;
+          if (n % 4 === 0 || n === 10) {
+            s += `<text x="20" y="${y + 3}" font-size="7.5" text-anchor="end" class="svg-label">${n}</text>`;
+          }
+        }
+        arr.forEach((v, i) => {
+          const bx = 24 + i * 32;
+          const bh = v * uY;
+          s += `<rect x="${bx}" y="${bY - bh}" width="32" height="${bh}" fill="url(#${fillId})" class="svg-outline"/>`;
+          s += `<text x="${bx}" y="${bY + 10}" font-size="7.5" text-anchor="middle" class="svg-label">${i * 2}</text>`;
+          if (i === arr.length - 1) {
+            s += `<text x="${bx + 32}" y="${bY + 10}" font-size="7.5" text-anchor="middle" class="svg-label">${(i + 1) * 2}</text>`;
+          }
+        });
+        s += `<line x1="24" y1="15" x2="24" y2="${bY}" stroke="#111827" stroke-width="1.4"/>`;
+        s += `<line x1="24" y1="${bY}" x2="192" y2="${bY}" stroke="#111827" stroke-width="1.4"/>`;
+        s += `<text x="196" y="${bY + 10}" font-size="7.5" class="svg-label">(時間)</text>`;
+        return s;
+      }
+
+      const bSixPlus = distB[3] + distB[4];
+      const aSixPlus = distA[3] + distA[4];
+      const expAns3 = `B小学校はグラフの山（度数の多い階級）がA小学校より右側に寄っており、6時間以上の人数もB小(${bSixPlus}人)の方がA小(${aSixPlus}人)より多いから。`;
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-4" data-unit="4">
+            ${createSheetHeader(4, '【大問4〜6特訓】データの活用（ドットプロット・ヒストグラム比較・全10問）', '平均値・最頻値・中央値の意味と、ヒストグラムの「山の位置」の比べ方をおさえよう', 12)}
+            <div class="sheet-body" style="gap: 6px;">
+              <!-- 大問1：ドットプロット -->
+              <div class="q-card flex flex-col justify-between" style="flex: 1.05;">
+                <div class="text-[11px] font-bold flex items-center">
+                  <span class="problem-num">1</span>
+                  <span>11人が1か月間に借りた本の冊数（ドットプロット）を見て、(1)〜(4)に答えなさい。</span>
+                </div>
+                <div class="flex items-center gap-3 my-0.5">
+                  <svg width="398" height="76" viewBox="0 0 398 76" class="math-svg shrink-0 border border-slate-200 rounded">
+                    ${dotsSVG}
+                    <line x1="12" y1="55" x2="378" y2="55" stroke="#111827" stroke-width="1.5"/>
+                    <text x="387" y="69" font-size="8.5" text-anchor="middle" class="svg-label">(冊)</text>
+                  </svg>
+                  <div class="flex flex-col gap-1 text-[10.5px] w-full">
+                    <div class="flex items-center justify-between"><span>(1) 平均値：</span><div><div class="ans-box ans-box-sm"><span class="inline-ans-text">${meanVal}</span></div> 冊</div></div>
+                    <div class="flex items-center justify-between"><span>(2) 最頻値：</span><div><div class="ans-box ans-box-sm"><span class="inline-ans-text">${modeVal}</span></div> 冊</div></div>
+                    <div class="flex items-center justify-between"><span>(3) 中央値：</span><div><div class="ans-box ans-box-sm"><span class="inline-ans-text">${medVal}</span></div> 冊</div></div>
+                  </div>
+                </div>
+                <div class="text-[10px]">
+                  <span class="font-bold">(4)</span> あいさんは <span class="font-bold underline">${targetBook}冊</span> 借りたので、11人の中で多く借りた方と言えます。理由を<span class="font-bold">「中央値」</span>という言葉を使って説明しなさい。
+                  <div class="desc-box mt-0.5" style="height: 40px;"><span class="inline-ans-text">${expAns1}</span></div>
+                </div>
+              </div>
+
+              <!-- 大問2：ヒストグラム -->
+              <div class="q-card flex flex-col justify-between" style="flex: 0.95;">
+                <div class="text-[11px] font-bold flex items-center">
+                  <span class="problem-num">2</span>
+                  <span>6年2組30人のソフトボール投げの記録（ヒストグラム）を見て、(1)〜(3)に答えなさい。</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <svg width="318" height="106" viewBox="0 0 318 106" class="math-svg shrink-0">
+                    <text x="14" y="10" font-size="8.5" class="svg-label">(人)</text>
+                    ${histSVG}
+                    <line x1="32" y1="8" x2="32" y2="${baseY}" stroke="#111827" stroke-width="1.5"/>
+                    <line x1="32" y1="${baseY}" x2="304" y2="${baseY}" stroke="#111827" stroke-width="1.5"/>
+                    <text x="27" y="${baseY + 3}" font-size="8.5" text-anchor="end" class="svg-label">0</text>
+                    <text x="311" y="${baseY + 12}" font-size="8.5" class="svg-label">(m)</text>
+                  </svg>
+                  <div class="flex flex-col gap-1.5 text-[10px] w-full">
+                    <div class="flex items-center justify-between gap-1">
+                      <span>(1) いちばん度数が多い階級：</span>
+                      <div class="shrink-0"><div class="ans-box ans-box-sm"><span class="inline-ans-text">20</span></div>m以上<div class="ans-box ans-box-sm"><span class="inline-ans-text">25</span></div>m未満</div>
+                    </div>
+                    <div class="flex items-center justify-between gap-1">
+                      <span>(2) 記録が<span class="font-bold">${targetDist}m</span>の人は高い方から：</span>
+                      <div class="shrink-0"><div class="ans-box ans-box-sm"><span class="inline-ans-text">${rankStart}</span></div>番目〜<div class="ans-box ans-box-sm"><span class="inline-ans-text">${rankEnd}</span></div>番目</div>
+                    </div>
+                    <div class="flex items-center justify-between gap-1">
+                      <span>(3) 15m以上25m未満の人数：</span>
+                      <div class="shrink-0"><div class="ans-box ans-box-sm"><span class="inline-ans-text">${rangeCount}</span></div> 人</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 大問3：2つのヒストグラム比較 -->
+              <div class="q-card flex flex-col justify-between" style="flex: 1.1;">
+                <div class="text-[11px] font-bold flex items-center">
+                  <span class="problem-num">3</span>
+                  <span>A小学校とB小学校の6年生（各25人）の1週間の家庭学習時間を比べて、(1)〜(3)に答えなさい。</span>
+                </div>
+                <div class="flex items-center justify-between gap-2 my-0.5">
+                  <svg width="212" height="96" viewBox="0 0 212 96" class="math-svg border border-slate-200 rounded bg-white">
+                    ${drawMiniHist(distA, 'A小学校（25人）', 'dot-pattern')}
+                  </svg>
+                  <svg width="212" height="96" viewBox="0 0 212 96" class="math-svg border border-slate-200 rounded bg-white">
+                    ${drawMiniHist(distB, 'B小学校（25人）', 'diagonal-hatch')}
+                  </svg>
+                  <div class="flex flex-col gap-1.5 text-[10px] w-full">
+                    <div class="flex items-center justify-between">
+                      <span>(1) A小で6時間以上の人数：</span>
+                      <div><div class="ans-box ans-box-sm"><span class="inline-ans-text">${aSixPlus}</span></div> 人</div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span>(2) B小で6時間以上の人数：</span>
+                      <div><div class="ans-box ans-box-sm"><span class="inline-ans-text">${bSixPlus}</span></div> 人</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-[10px]">
+                  <span class="font-bold">(3)</span> 2つのグラフから「B小の方が家庭学習の時間が長い」と言えます。グラフの特ちょうを比べて説明しなさい。
+                  <div class="desc-box mt-0.5" style="height: 40px;"><span class="inline-ans-text">${expAns3}</span></div>
+                </div>
+              </div>
+            </div>
+            ${createSheetFooter('4')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント4【データの活用（全3大問・10問）】</h4>
+            <div class="text-[10px] space-y-0.5">
+              <div>大問1：(1) ${meanVal}冊　(2) ${modeVal}冊　(3) ${medVal}冊　(4) ${expAns1}</div>
+              <div>大問2：(1) 20m以上25m未満　(2) ${rankStart}番目〜${rankEnd}番目　(3) ${rangeCount}人</div>
+              <div>大問3：(1) ${aSixPlus}人　(2) ${bSixPlus}人　(3) ${expAns3}</div>
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント5：場合の数（12問・2列×6行）
+    // =========================================================================
+    function generateSheet5() {
+      const n1 = pickRandom([4, 5]);
+      const ans1 = n1 === 4 ? 24 : 120;
+      const n2 = pickRandom([5, 6, 7, 8]);
+      const ans2 = (n2 * (n2 - 1)) / 2;
+      const n3 = pickRandom([5, 6, 7]);
+      const ans3 = n3; // n個からn-1個選ぶ
+      const digits4 = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 4).sort();
+      const ans4 = 4 * 3 * 2;
+      const digits5 = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 3).sort();
+      const ans5 = 3 * 3 * 2; // 0を含む4枚から3けた
+      const flagN = pickRandom([4, 5, 6]);
+      const ans6 = flagN * (flagN - 1);
+      const teamN = pickRandom([5, 6, 7]);
+      const ans7 = (teamN * (teamN - 1)) / 2;
+
+      const splitCase = pickRandom([
+        { total: 5, g1: 3, g2: 2, names: 'A〜E', ans: 10 },
+        { total: 6, g1: 4, g2: 2, names: 'A〜F', ans: 15 },
+        { total: 7, g1: 5, g2: 2, names: 'A〜G', ans: 21 }
+      ]);
+
+      const c100 = randInt(2, 3), c50 = randInt(2, 3), c10 = randInt(3, 5);
+      const money9 = c100 * 100 + 50 + randInt(1, 2) * 10;
+      let ways9 = 0;
+      for (let a = 0; a <= c100; a++) {
+        for (let b = 0; b <= c50; b++) {
+          for (let c = 0; c <= c10; c++) {
+            if (a * 100 + b * 50 + c * 10 === money9) ways9++;
+          }
+        }
+      }
+
+      const menuA = randInt(3, 5), menuB = randInt(2, 4);
+      const ans10 = menuA * menuB;
+
+      const iceN = pickRandom([5, 6]);
+      const ans11 = (iceN * (iceN - 1) * (iceN - 2)) / 6;
+
+      const lockN = pickRandom([3, 4, 5]);
+      const ans12 = lockN * lockN;
+
+      const qs = [
+        { q: `${n1}人の児童がリレーで走る順序を決めます。全部で何通りありますか。`, unit: '通り', ans: ans1 },
+        { q: `${n2}つのチームが、どのチームとも1回ずつ試合をします。全部で何試合ですか。`, unit: '試合', ans: ans2 },
+        { q: `${n3}種類のアイスから ${n3 - 1}種類を選びます。選び方は何通りですか。`, unit: '通り', ans: ans3 },
+        { q: `[${digits4.join('][')}] の4枚のカードから3枚を並べて3けたの整数を作ります。何個できますか。`, unit: '個', ans: ans4 },
+        { q: `[0][${digits5.join('][')}] の4枚のカードから3枚を並べて3けたの整数を作ります。何個できますか。`, unit: '個', ans: ans5 },
+        { q: `${flagN}色の旗から2色を選び、左と右に1本ずつ立てます。立て方は何通りですか。`, unit: '通り', ans: ans6 },
+        { q: `${teamN}人の班から、掃除当番を2人選びます。選び方は何通りですか。`, unit: '通り', ans: ans7 },
+        { q: `${splitCase.names}の${splitCase.total}人を、${splitCase.g1}人と${splitCase.g2}人の2組に分けます。分け方は何通りですか。`, unit: '通り', ans: splitCase.ans },
+        { q: `100円玉${c100}枚、50円玉${c50}枚、10円玉${c10}枚で ${money9}円を払う方法は何通りですか。`, unit: '通り', ans: ways9 },
+        { q: `パンが${menuA}種類、飲み物が${menuB}種類あります。1つずつ選ぶ組み合わせは何通りですか。`, unit: '通り', ans: ans10 },
+        { q: `${iceN}種類の果物の中から、ちがう3種類を選んで盛り合わせます。何通りですか。`, unit: '通り', ans: ans11 },
+        { q: `1〜${lockN}の数字を使って、同じ数字を何回使ってもよい2けたの暗証番号は何通りですか。`, unit: '通り', ans: ans12 }
+      ];
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-5" data-unit="5">
+            ${createSheetHeader(5, '【大問5・6特訓】場合の数（並べ方・組み合わせ・全12問）', '「順序が関係あるか（並べ方）」「ないか（組み合わせ）」を見分けよう！', 12)}
+            <div class="sheet-body">
+              <div class="text-[11.5px] font-bold flex items-center shrink-0">
+                <span class="problem-num">5</span>
+                <span>次の(1)〜(12)の問いに答えなさい。樹形図や表を使って、落ちや重なりがないように数えよう。</span>
+              </div>
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-2 flex-1 min-h-0" style="grid-template-rows: repeat(6, minmax(0, 1fr));">
+                ${qs.map((item, idx) => `
+                  <div class="q-card flex flex-col justify-between">
+                    <div class="text-[10.5px] leading-snug">
+                      <span class="font-bold mr-1">(${idx + 1})</span>${item.q}
+                    </div>
+                    <div class="flex justify-end items-center gap-1 pt-1">
+                      <div class="ans-box"><span class="inline-ans-text">${item.ans}</span></div>
+                      <span class="text-[10.5px] font-bold">${item.unit}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ${createSheetFooter('5')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント5【場合の数（全12問）】</h4>
+            <div class="grid grid-cols-4 gap-x-2 gap-y-0.5 text-[10.5px]">
+              ${qs.map((item, i) => `<div>(${i + 1}) ${item.ans}${item.unit}</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント6：比と比の利用（全10問：上段2列×3行＝6問、下段2列×2行＝4問）
+    // =========================================================================
+    function generateSheet6() {
+      const labels = ['ア', 'イ', 'ウ', 'エ', 'オ'];
+      const baseRatios = [
+        { a: 2, b: 3 }, { a: 3, b: 4 }, { a: 2, b: 5 }, { a: 5, b: 8 }, { a: 3, b: 5 }, { a: 4, b: 7 }
+      ];
+      const chosen = shuffle(baseRatios).slice(0, 4);
+
+      function makeSelectCard(idx, mode, r) {
+        const m1 = randInt(2, 3), m2 = randInt(4, 5), m3 = randInt(6, 7);
+        const opts = shuffle([
+          { text: `${r.a * m1}:${r.b * m1}`, ok: true },
+          { text: `${r.a * m2}:${r.b * m2}`, ok: true },
+          { text: `${r.a * m3}:${r.b * m3}`, ok: true },
+          { text: `${r.b}:${r.a}`, ok: false },
+          { text: `${r.a + 2}:${r.b + 2}`, ok: false }
+        ]);
+        const corr = [];
+        const optHTML = opts.map((o, i) => {
+          if (o.ok) corr.push(labels[i]);
+          return `<span><b>${labels[i]}</b> ${o.text}</span>`;
+        }).join('');
+        const qText = mode === 'val'
+          ? `比の値が ${fracHTML(r.a, r.b)} となる比を<span class="underline font-bold">全て</span>選びなさい。`
+          : `${r.a * 2}:${r.b * 2} と<span class="underline font-bold">等しい比</span>を全て選びなさい。`;
+        return {
+          ans: corr.join('、'),
+          html: `
+            <div class="q-card flex flex-col justify-between">
+              <div class="flex items-center justify-between gap-1 text-[10px]">
+                <div><span class="font-bold mr-1">(${idx})</span>${qText}</div>
+                <div class="ans-box ans-box-md shrink-0"><span class="inline-ans-text">${corr.join('、')}</span></div>
+              </div>
+              <div class="flex flex-wrap justify-between gap-1 text-[10.5px] pt-1 border-t border-slate-100">
+                ${optHTML}
+              </div>
+            </div>
+          `
+        };
+      }
+
+      const c1 = makeSelectCard(1, 'val', chosen[0]);
+      const c2 = makeSelectCard(2, 'val', chosen[1]);
+      const c3 = makeSelectCard(3, 'eq', chosen[2]);
+      const c4 = makeSelectCard(4, 'eq', chosen[3]);
+
+      // (5) 比を簡単にする（2小問）
+      const sb1 = pickRandom([[2, 3], [3, 5], [4, 5], [5, 6]]);
+      const k5 = pickRandom([3, 4, 6, 7]);
+      const d5a = (randInt(2, 5) / 10).toFixed(1);
+      const d5b = (randInt(6, 9) / 10).toFixed(1);
+      const simp5b = reduceFrac(Math.round(d5a * 10), Math.round(d5b * 10));
+
+      // (6) xを求める（2小問）
+      const xb1 = pickRandom([[2, 3], [3, 4], [2, 5]]);
+      const xm1 = randInt(4, 9);
+      const xb2 = pickRandom([[3, 5], [4, 7], [5, 6]]);
+      const xm2 = randInt(4, 8);
+
+      // (7)〜(10) 文章題＋説明欄（2列×2行）
+      // (7) 全体から分ける1
+      const r7 = pickRandom([[2, 3], [3, 5], [2, 5]]);
+      const tot7 = (r7[0] + r7[1]) * randInt(2, 5) * 100;
+      const ans7 = (tot7 * r7[0]) / (r7[0] + r7[1]);
+      const exp7 = `全体を${r7[0]}＋${r7[1]}＝${r7[0] + r7[1]}とみると妹は${r7[0]}/${r7[0] + r7[1]}なので、${tot7}×${r7[0]}/${r7[0] + r7[1]}＝${ans7}`;
+
+      // (8) 全体から分ける2（リボン）
+      const r8 = pickRandom([[3, 4], [2, 3], [3, 7]]);
+      const tot8 = (r8[0] + r8[1]) * randInt(8, 16);
+      const ans8 = (tot8 * r8[1]) / (r8[0] + r8[1]);
+      const exp8 = `全体を${r8[0]}＋${r8[1]}＝${r8[0] + r8[1]}とみると長い方は${r8[1]}/${r8[0] + r8[1]}なので、${tot8}×${r8[1]}/${r8[0] + r8[1]}＝${ans8}`;
+
+      // (9) 片方からもう片方（動物園）
+      const r9 = pickRandom([[3, 5], [2, 5], [3, 4]]);
+      const u9 = randInt(4, 9) * 20;
+      const adult9 = r9[0] * u9;
+      const ans9 = r9[1] * u9;
+      const exp9 = `比の1にあたる人数は${adult9}÷${r9[0]}＝${u9}(人)。子どもは${u9}×${r9[1]}＝${ans9}`;
+
+      // (10) 片方から合計（図書館）
+      const r10 = pickRandom([[3, 7], [2, 5], [3, 5]]);
+      const u10 = randInt(3, 8) * 10;
+      const zukan10 = r10[0] * u10;
+      const ans10 = (r10[0] + r10[1]) * u10;
+      const exp10 = `比の1にあたるのは${zukan10}÷${r10[0]}＝${u10}(冊)。合計は${u10}×(${r10[0]}＋${r10[1]})＝${ans10}`;
+
+      const wordQs = [
+        {
+          n: 7,
+          q: `妹と姉で ${tot7}円の花束を ${r7[0]}:${r7[1]} の比で出し合います。妹は何円出しますか。`,
+          exp: exp7, ans: ans7, unit: '円'
+        },
+        {
+          n: 8,
+          q: `${tot8}cmのリボンを ${r8[0]}:${r8[1]} の比に切ります。長い方の長さは何cmですか。`,
+          exp: exp8, ans: ans8, unit: 'cm'
+        },
+        {
+          n: 9,
+          q: `動物園の大人と子どもの比は ${r9[0]}:${r9[1]} で、大人は ${adult9}人です。子どもは何人ですか。`,
+          exp: exp9, ans: ans9, unit: '人'
+        },
+        {
+          n: 10,
+          q: `図鑑と小説の比は ${r10[0]}:${r10[1]} で、図鑑は ${zukan10}冊です。合計は何冊ですか。`,
+          exp: exp10, ans: ans10, unit: '冊'
+        }
+      ];
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-6" data-unit="6">
+            ${createSheetHeader(6, '【大問6〜8特訓】比と比の利用（選択・計算・文章題記述・全10問）', '比の値・等しい比・xの求め方・文章題の「式や言葉での説明」を完全攻略！', 14)}
+            <div class="sheet-body" style="gap: 6px;">
+              <!-- 上段 2列×3行＝6問 -->
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-1.5" style="flex: 1.05; grid-template-rows: repeat(3, minmax(0, 1fr));">
+                ${c1.html}
+                ${c2.html}
+                ${c3.html}
+                ${c4.html}
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div class="font-bold">(5) 次の比をいちばん簡単な整数の比にしなさい。</div>
+                  <div class="flex items-center justify-between">
+                    <span>① ${sb1[0] * k5} : ${sb1[1] * k5} ＝</span>
+                    <div class="ans-box ans-box-sm"><span class="inline-ans-text">${sb1[0]}:${sb1[1]}</span></div>
+                    <span>② ${d5a} : ${d5b} ＝</span>
+                    <div class="ans-box ans-box-sm"><span class="inline-ans-text">${simp5b.n}:${simp5b.d}</span></div>
+                  </div>
+                </div>
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div class="font-bold">(6) 次の比の <span class="italic font-serif">x</span> にあてはまる数を求めなさい。</div>
+                  <div class="flex items-center justify-between">
+                    <span>① ${xb1[0]}:${xb1[1]}＝${xb1[0] * xm1}:<span class="italic font-serif">x</span></span>
+                    <div class="ans-box ans-box-sm"><span class="inline-ans-text">${xb1[1] * xm1}</span></div>
+                    <span>② <span class="italic font-serif">x</span>:${xb2[1] * xm2}＝${xb2[0]}:${xb2[1]}</span>
+                    <div class="ans-box ans-box-sm"><span class="inline-ans-text">${xb2[0] * xm2}</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 下段 2列×2行＝4問（記述付き文章題） -->
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-1.5" style="flex: 1.25; grid-template-rows: repeat(2, minmax(0, 1fr));">
+                ${wordQs.map(w => `
+                  <div class="q-card flex flex-col justify-between text-[10px]">
+                    <div class="leading-snug"><span class="font-bold mr-1">(${w.n})</span>${w.q}（式や言葉で説明し答えを書く）</div>
+                    <div class="desc-box my-1 flex-1"><span class="inline-ans-text">${w.exp}</span></div>
+                    <div class="flex justify-end items-center gap-1">
+                      <span class="font-bold">答え</span>
+                      <div class="ans-box"><span class="inline-ans-text">${w.ans}</span></div>
+                      <span>${w.unit}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ${createSheetFooter('6')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント6【比と比の利用（全10問）】</h4>
+            <div class="text-[10px] space-y-0.5">
+              <div>(1) ${c1.ans}　(2) ${c2.ans}　(3) ${c3.ans}　(4) ${c4.ans}　(5) ①${sb1[0]}:${sb1[1]} ②${simp5b.n}:${simp5b.d}　(6) ①${xb1[1] * xm1} ②${xb2[0] * xm2}</div>
+              ${wordQs.map(w => `<div>(${w.n}) ${w.ans}${w.unit}（例：${w.exp}）</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント7：文字と式（14問・2列×7行）
+    // =========================================================================
+    function generateSheet7() {
+      const p1 = randInt(120, 250), b1 = randInt(50, 150);
+      const p2 = randInt(60, 130), pay2 = 1000;
+      const area3 = pickRandom([24, 30, 36, 48, 60]);
+      const div4 = pickRandom([3, 4, 5, 6]), plate4 = randInt(40, 90);
+      const spd5 = pickRandom([40, 50, 60, 70]);
+      const disc6 = randInt(20, 60), cnt6 = randInt(4, 7);
+
+      // (7)(8) 式に合う場面選び
+      const k7 = randInt(16, 32);
+      const L4 = ['ア', 'イ', 'ウ', 'エ'];
+      const opts7 = shuffle([
+        { t: `x gの砂糖と ${k7}gの塩を合わせた重さ y g`, ok: true },
+        { t: `x kmのうち ${k7}km走った残りの道のり y km`, ok: false },
+        { t: `面積 ${k7}cm²の平行四辺形の底辺 x cmと高さ y cm`, ok: false },
+        { t: `x cmのリボンを ${k7}cmずつ分けた人数 y 人`, ok: false }
+      ]);
+      let ans7 = '';
+      opts7.forEach((o, i) => { o.l = L4[i]; if (o.ok) ans7 = L4[i]; });
+
+      const k8 = pickRandom([12, 18, 24, 30]);
+      const opts8 = shuffle([
+        { t: `底辺 x cm、高さ y cmの平行四辺形の面積 ${k8}cm²`, ok: true },
+        { t: `x 円の本と y 円のペンを買った合計 ${k8}円`, ok: false },
+        { t: `x cmのひもから y cm切った残り ${k8}cm`, ok: false },
+        { t: `x 個のアメを y 人に分けた1人分 ${k8}個`, ok: false }
+      ]);
+      let ans8 = '';
+      opts8.forEach((o, i) => { o.l = L4[i]; if (o.ok) ans8 = L4[i]; });
+
+      // (9)〜(14) 代入と逆算（6問）
+      const a9 = randInt(12, 25), b9 = randInt(10, 40), x9 = randInt(3, 8);
+      const a10 = randInt(30, 60), b10 = randInt(20, 80), x10 = randInt(4, 9);
+      const a11 = randInt(5, 12), b11 = randInt(10, 30), x11 = randInt(5, 11);
+      const a12 = randInt(15, 30), b12 = randInt(20, 50), x12 = randInt(4, 9);
+      const tot13 = pickRandom([500, 800, 1000]), a13 = pickRandom([60, 70, 80, 90]), x13 = randInt(3, 6);
+      const a14 = pickRandom([4, 5, 6]), b14 = randInt(10, 25), x14 = randInt(6, 12);
+
+      const cards = [
+        { q: `(1) 1個 ${p1}円のケーキを x 個買い、箱代 ${b1}円を足した代金 y 円の式`, a: `${p1}×x＋${b1}＝y`, wide: true },
+        { q: `(2) 1本 ${p2}円のペンを x 本買い、${pay2}円出したおつり y 円の式`, a: `${pay2}－${p2}×x＝y`, wide: true },
+        { q: `(3) 面積が ${area3}cm²の長方形の、たて x cmと横 y cmの関係の式`, a: `x×y＝${area3}`, wide: true },
+        { q: `(4) x gの塩を ${div4}等分し、${plate4}gの皿にのせた重さ y gの式`, a: `x÷${div4}＋${plate4}＝y`, wide: true },
+        { q: `(5) 時速 ${spd5}kmで x 時間走ったときの道のり y kmの式`, a: `${spd5}×x＝y`, wide: true },
+        { q: `(6) 1冊 ${disc6}円引きのノート(定価 x 円)を ${cnt6}冊買った代金 y 円の式`, a: `(x－${disc6})×${cnt6}＝y`, wide: true },
+        {
+          q: `(7) 式 <b class="underline">x＋${k7}＝y</b> にあう場面を1つ選べ。<div class="text-[9.5px] mt-0.5 leading-tight">${opts7.map(o => `${o.l}:${o.t}`).join(' ／ ')}</div>`,
+          a: ans7, wide: false
+        },
+        {
+          q: `(8) 式 <b class="underline">x×y＝${k8}</b> にあう場面を1つ選べ。<div class="text-[9.5px] mt-0.5 leading-tight">${opts8.map(o => `${o.l}:${o.t}`).join(' ／ ')}</div>`,
+          a: ans8, wide: false
+        },
+        { q: `(9) 式 <b>${a9}×x＋${b9}＝y</b> で、x＝${x9} のときの y の値`, a: `${a9 * x9 + b9}`, wide: false },
+        { q: `(10) 式 <b>${a10}×x－${b10}＝y</b> で、x＝${x10} のときの y の値`, a: `${a10 * x10 - b10}`, wide: false },
+        { q: `(11) 式 <b>${a11}×x＋${b11}＝y</b> で、y＝${a11 * x11 + b11} のときの x の値`, a: `${x11}`, wide: false },
+        { q: `(12) 式 <b>${a12}×x－${b12}＝y</b> で、y＝${a12 * x12 - b12} のときの x の値`, a: `${x12}`, wide: false },
+        { q: `(13) 式 <b>${tot13}－${a13}×x＝y</b> で、y＝${tot13 - a13 * x13} のときの x の値`, a: `${x13}`, wide: false },
+        { q: `(14) 式 <b>(x＋${b14})×${a14}＝y</b> で、y＝${(x14 + b14) * a14} のときの x の値`, a: `${x14}`, wide: false }
+      ];
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-7" data-unit="7">
+            ${createSheetHeader(7, '【大問8・9特訓】文字と式・xとyの関係（立式・場面選択・逆算・全14問）', '言葉の式を作ってから x・y に置きかえよう！逆算は式の順番を逆にたどる！', 14)}
+            <div class="sheet-body">
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 flex-1 min-h-0" style="grid-template-rows: repeat(7, minmax(0, 1fr));">
+                ${cards.map(c => `
+                  <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                    <div class="leading-snug">${c.q}</div>
+                    <div class="ans-box ${c.wide ? 'ans-box-md' : 'ans-box-sm'} shrink-0"><span class="inline-ans-text text-[10px]">${c.a}</span></div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ${createSheetFooter('7')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント7【文字と式（全14問）】</h4>
+            <div class="grid grid-cols-3 gap-x-2 gap-y-0.5 text-[10px]">
+              ${cards.map((c, i) => `<div>(${i + 1}) ${c.a}</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント8：対称な図形（8問・2列×4行）
+    // =========================================================================
+    function generateSheet8() {
+      const g1 = buildGridSVG(120, 84, 12);
+
+      // (3) 点対称作図のバリエーション
+      const ptVar = pickRandom([
+        { given: '60,12 24,12 12,36 36,48 24,72 60,72', ans: '60,72 96,72 108,48 84,36 96,12 60,12' },
+        { given: '60,12 24,24 36,48 12,60 36,72 60,72', ans: '60,72 96,60 84,36 108,24 84,12 60,12' }
+      ]);
+
+      // (4) 線対称作図のバリエーション
+      const lnVar = pickRandom([
+        { given: '60,12 24,12 36,36 12,48 24,72 60,72', ans: '60,12 96,12 84,36 108,48 96,72 60,72' },
+        { given: '60,12 36,24 12,24 24,48 12,72 60,72', ans: '60,12 84,24 108,24 96,48 108,72 60,72' }
+      ]);
+
+      // (5) 性質を全て選ぶ
+      const propOpts = shuffle([
+        { t: '線対称では対応する点を結ぶ直線は対称の軸と垂直に交わる', ok: true },
+        { t: '点対称では対称の中心から対応する点までの長さは等しい', ok: true },
+        { t: '正多角形には辺の数と同じ数だけ対称の軸がある', ok: true },
+        { t: '平行四辺形はいつでも線対称な図形である', ok: false },
+        { t: '点対称な図形には対称の中心が2つあるものがある', ok: false }
+      ]);
+      const L5 = ['ア', 'イ', 'ウ', 'エ', 'オ'];
+      const corr5 = [];
+      propOpts.forEach((o, i) => { o.l = L5[i]; if (o.ok) corr5.push(L5[i]); });
+
+      // (6) 正多角形の性質
+      const poly = pickRandom([
+        { name: '正五角形', s: 5, l: '○', p: '×', ax: 5 },
+        { name: '正六角形', s: 6, l: '○', p: '○', ax: 6 },
+        { name: '正七角形', s: 7, l: '○', p: '×', ax: 7 },
+        { name: '正八角形', s: 8, l: '○', p: '○', ax: 8 }
+      ]);
+      const polyPts = [];
+      for (let i = 0; i < poly.s; i++) {
+        const ang = -Math.PI / 2 + (2 * Math.PI * i) / poly.s;
+        polyPts.push(`${(44 + 30 * Math.cos(ang)).toFixed(1)},${(42 + 30 * Math.sin(ang)).toFixed(1)}`);
+      }
+
+      const exp7 = '直線BCと対称の軸アイが垂直に交わり、交わった点Fから点B・点Cまでの長さが等しいから。';
+      const exp8 = '点Bと点Fを結ぶ直線が対称の中心Oを通り、直線OBと直線OFの長さが等しいから。';
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-8" data-unit="8">
+            ${createSheetHeader(8, '【大問9〜13特訓】対称な図形（方眼作図・性質・理由記述・全8問）', '作図は方眼のマス目を数えて正確に！理由は「垂直」「中心」「長さ」で説明する！', 10)}
+            <div class="sheet-body">
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-2 flex-1 min-h-0" style="grid-template-rows: repeat(4, minmax(0, 1fr));">
+                <!-- (1) 線対称の軸をかく -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <div class="leading-snug"><span class="font-bold">(1)</span> 下の線対称な図形に、<span class="underline font-bold">対称の軸</span>を定規でかき入れなさい。（1本）</div>
+                  <svg width="128" height="90" viewBox="-4 -3 128 90" class="math-svg shrink-0">
+                    <rect x="0" y="0" width="120" height="84" fill="#ffffff" stroke="#94a3b8" stroke-width="0.9"/>
+                    ${g1}
+                    <polygon points="60,12 108,36 84,72 36,72 12,36" fill="url(#dot-pattern)" class="svg-outline"/>
+                    <line x1="60" y1="2" x2="60" y2="82" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="5,2" class="inline-ans-text"/>
+                  </svg>
+                </div>
+
+                <!-- (2) 点対称の中心Oをかく -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <div class="leading-snug"><span class="font-bold">(2)</span> 下の点対称な図形に、<span class="underline font-bold">対称の中心O</span>をかき入れなさい。（補助線は消さない）</div>
+                  <svg width="128" height="90" viewBox="-4 -3 128 90" class="math-svg shrink-0">
+                    <rect x="0" y="0" width="120" height="84" fill="#ffffff" stroke="#94a3b8" stroke-width="0.9"/>
+                    ${g1}
+                    <polygon points="36,12 108,12 84,72 12,72" fill="url(#dot-pattern)" class="svg-outline"/>
+                    <g class="inline-ans-text">
+                      <line x1="36" y1="12" x2="84" y2="72" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,2"/>
+                      <line x1="108" y1="12" x2="12" y2="72" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,2"/>
+                      <circle cx="60" cy="42" r="3" fill="#dc2626"/>
+                      <text x="64" y="40" font-size="9.5" font-weight="bold" fill="#dc2626">O</text>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- (3) 点対称の残りをかく -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <div class="leading-snug"><span class="font-bold">(3)</span> 点Oが対称の中心になるように、<span class="underline font-bold">点対称な図形</span>の残りをかき入れなさい。</div>
+                  <svg width="128" height="90" viewBox="-4 -3 128 90" class="math-svg shrink-0">
+                    <rect x="0" y="0" width="120" height="84" fill="#ffffff" stroke="#94a3b8" stroke-width="0.9"/>
+                    ${g1}
+                    <polyline points="${ptVar.given}" fill="none" class="svg-outline"/>
+                    <circle cx="60" cy="42" r="2.8" fill="#111827"/>
+                    <text x="64" y="40" class="svg-vertex">O</text>
+                    <polyline points="${ptVar.ans}" fill="none" stroke="#dc2626" stroke-width="1.8" class="inline-ans-text"/>
+                  </svg>
+                </div>
+
+                <!-- (4) 線対称の残りをかく -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <div class="leading-snug"><span class="font-bold">(4)</span> 直線アイが対称の軸になるように、<span class="underline font-bold">線対称な図形</span>の残りをかき入れなさい。</div>
+                  <svg width="128" height="90" viewBox="-4 -3 128 90" class="math-svg shrink-0">
+                    <rect x="0" y="0" width="120" height="84" fill="#ffffff" stroke="#94a3b8" stroke-width="0.9"/>
+                    ${g1}
+                    <line x1="60" y1="0" x2="60" y2="84" class="svg-axis"/>
+                    <text x="63" y="9" font-size="8.5" class="svg-label">ア</text>
+                    <text x="63" y="81" font-size="8.5" class="svg-label">イ</text>
+                    <polyline points="${lnVar.given}" fill="none" class="svg-outline"/>
+                    <polyline points="${lnVar.ans}" fill="none" stroke="#dc2626" stroke-width="1.8" class="inline-ans-text"/>
+                  </svg>
+                </div>
+
+                <!-- (5) 対称の性質を全て選ぶ -->
+                <div class="q-card flex flex-col justify-between text-[9.5px]">
+                  <div class="flex items-center justify-between gap-1">
+                    <span class="font-bold text-[10px]">(5) 正しい説明を<span class="underline">全て</span>選びなさい。</span>
+                    <div class="ans-box ans-box-md shrink-0"><span class="inline-ans-text">${corr5.join('、')}</span></div>
+                  </div>
+                  <div class="space-y-0.5 leading-tight">
+                    ${propOpts.map(o => `<div><b>${o.l}</b> ${o.t}</div>`).join('')}
+                  </div>
+                </div>
+
+                <!-- (6) 正多角形の性質 -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <svg width="88" height="84" viewBox="0 0 88 84" class="math-svg shrink-0">
+                    <polygon points="${polyPts.join(' ')}" fill="url(#dot-pattern)" class="svg-outline"/>
+                    <text x="44" y="81" font-size="8.5" text-anchor="middle" class="svg-label">${poly.name}</text>
+                  </svg>
+                  <div class="flex flex-col gap-1 w-full">
+                    <div class="font-bold">(6) 左の${poly.name}について答えなさい。</div>
+                    <div class="flex items-center justify-between"><span>① 線対称か(○/×)</span><div class="ans-box ans-box-sm"><span class="inline-ans-text">${poly.l}</span></div></div>
+                    <div class="flex items-center justify-between"><span>② 点対称か(○/×)</span><div class="ans-box ans-box-sm"><span class="inline-ans-text">${poly.p}</span></div></div>
+                    <div class="flex items-center justify-between"><span>③ 対称の軸の数</span><div><div class="ans-box ans-box-sm"><span class="inline-ans-text">${poly.ax}</span></div>本</div></div>
+                  </div>
+                </div>
+
+                <!-- (7) 線対称の対応する点の理由記述 -->
+                <div class="q-card flex flex-col justify-between text-[9.5px]">
+                  <div class="flex items-center gap-2">
+                    <svg width="96" height="62" viewBox="0 0 96 62" class="math-svg shrink-0">
+                      <polygon points="24,10 72,10 86,50 10,50" fill="url(#dot-pattern)" class="svg-outline"/>
+                      <line x1="48" y1="2" x2="48" y2="60" class="svg-axis"/>
+                      <text x="51" y="9" font-size="8" class="svg-label">ア</text>
+                      <text x="51" y="59" font-size="8" class="svg-label">イ</text>
+                      <text x="15" y="12" class="svg-vertex">A</text><text x="75" y="12" class="svg-vertex">D</text>
+                      <text x="2" y="53" class="svg-vertex">B</text><text x="88" y="53" class="svg-vertex">C</text>
+                      <text x="50" y="48" class="svg-vertex">F</text>
+                    </svg>
+                    <div class="leading-tight"><span class="font-bold">(7)</span> 線対称な図形で点Bに対応する点が点Cである理由を<span class="font-bold underline">「垂直」「長さ」</span>で説明しなさい。</div>
+                  </div>
+                  <div class="desc-box mt-1" style="height: 40px;"><span class="inline-ans-text">${exp7}</span></div>
+                </div>
+
+                <!-- (8) 点対称の対応する点の理由記述 -->
+                <div class="q-card flex flex-col justify-between text-[9.5px]">
+                  <div class="flex items-center gap-2">
+                    <svg width="96" height="62" viewBox="0 0 96 62" class="math-svg shrink-0">
+                      <polygon points="28,10 82,10 68,52 14,52" fill="url(#dot-pattern)" class="svg-outline"/>
+                      <line x1="14" y1="52" x2="82" y2="10" class="svg-hidden"/>
+                      <circle cx="48" cy="31" r="2.5" fill="#111827"/>
+                      <text x="50" y="29" class="svg-vertex">O</text>
+                      <text x="20" y="12" class="svg-vertex">A</text><text x="84" y="12" class="svg-vertex">F</text>
+                      <text x="5" y="55" class="svg-vertex">B</text><text x="70" y="55" class="svg-vertex">E</text>
+                    </svg>
+                    <div class="leading-tight"><span class="font-bold">(8)</span> 点対称な図形で点Bに対応する点が点Fである理由を<span class="font-bold underline">「中心O」「長さ」</span>で説明しなさい。</div>
+                  </div>
+                  <div class="desc-box mt-1" style="height: 40px;"><span class="inline-ans-text">${exp8}</span></div>
+                </div>
+              </div>
+            </div>
+            ${createSheetFooter('8')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント8【対称な図形（全8問）】</h4>
+            <div class="text-[10px] space-y-0.5">
+              <div>(1)〜(4) 作図（操作バーの「赤字解答ON」で正確な作図位置を確認できます）</div>
+              <div>(5) ${corr5.join('、')}　(6) ①${poly.l} ②${poly.p} ③${poly.ax}本</div>
+              <div>(7) ${exp7}</div>
+              <div>(8) ${exp8}</div>
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント9：速さ・縮図と拡大図（10問・2列×5行）
+    // =========================================================================
+    function generateSheet9() {
+      // (1)(2) 速さ単位変換
+      const hSpd1 = pickRandom([30, 60, 90, 120]);
+      const mSpd1 = hSpd1 / 60;
+      const mSpd2 = pickRandom([600, 900, 1200, 1500]);
+      const sSpd2 = mSpd2 / 60;
+
+      // (3) 3つの速さ比較
+      const sSet = pickRandom([
+        { a: '時速54kmの車', b: '分速850mの自転車', c: '秒速16mの人', ans: 'ウ' },
+        { a: '時速72kmの電車', b: '分速1300mのバイク', c: '秒速18mの鳥', ans: 'イ' },
+        { a: '時速36kmの船', b: '分速550mの馬', c: '秒速12mの犬', ans: 'ウ' }
+      ]);
+
+      // (4)(5) 道のり・時間SVG図付き速さ問題
+      const d4a = pickRandom([600, 800, 900]), t4a = pickRandom([8, 10, 12]), mult4 = pickRandom([3, 4]);
+      const d4b = d4a * mult4, t4b = t4a * mult4;
+      const spd5 = pickRandom([60, 70, 80]), t5 = pickRandom([15, 20, 25]);
+      const d5 = spd5 * t5;
+
+      // (6) 単位量あたり会話選択
+      const unitMode = pickRandom(['perSec', 'perItem']);
+      const uT1 = 1000, uN1 = 12, uT2 = 1500, uN2 = 21;
+      const unitQ = unitMode === 'perSec'
+        ? {
+            expr: 'Aさん:12÷1000=0.012 / Bさん:21÷1500=0.014',
+            opts: 'ア:1秒の個数でAが速い イ:1秒の個数でBが速い ウ:1個の時間でAが速い エ:1個の時間でBが速い',
+            ans: 'イ'
+          }
+        : {
+            expr: 'Aさん:300÷8=37.5 / Bさん:462÷12=38.5',
+            opts: 'ア:1秒の個数でAが速い イ:1秒の個数でBが速い ウ:1個の時間でAが速い エ:1個の時間でBが速い',
+            ans: 'ウ'
+          };
+
+      // (7)(8) 縮尺方眼地図SVG問題
+      const sc7 = pickRandom([10000, 20000, 25000]);
+      const ab7 = randInt(3, 5), bc7 = randInt(2, 4);
+      const realM7 = ((ab7 + bc7) * sc7) / 100;
+      const sc8 = 50000, realKm8 = pickRandom([2, 3, 4, 5]);
+      const mapCm8 = (realKm8 * 100000) / sc8;
+
+      // (9)(10) 2つの台形SVG付き拡大図・縮図
+      const mag = pickRandom([2, 3]);
+      const angA = pickRandom([65, 70, 75, 80]);
+      const sideAB = randInt(3, 6);
+      const sideEF = sideAB * mag;
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-9" data-unit="9">
+            ${createSheetHeader(9, '【大問11〜15特訓】速さ・単位量あたり・縮図と拡大図（全10問）', '速さは単位をそろえて比較！縮図は「×分母」でcmをm・kmへ！拡大図は角が同じ！', 10)}
+            <div class="sheet-body">
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 flex-1 min-h-0" style="grid-template-rows: repeat(5, minmax(0, 1fr));">
+                <!-- (1) -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10.5px]">
+                  <div><span class="font-bold mr-1">(1)</span>時速 <b>${hSpd1}km</b> で走る自動車は、1分間に何km進みますか。</div>
+                  <div class="shrink-0">分速<div class="ans-box ans-box-sm mx-0.5"><span class="inline-ans-text">${mSpd1}</span></div>km</div>
+                </div>
+
+                <!-- (2) -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10.5px]">
+                  <div><span class="font-bold mr-1">(2)</span>分速 <b>${mSpd2}m</b> で走るランナーの速さは、秒速何mですか。</div>
+                  <div class="shrink-0">秒速<div class="ans-box ans-box-sm mx-0.5"><span class="inline-ans-text">${sSpd2}</span></div>m</div>
+                </div>
+
+                <!-- (3) -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div class="flex items-center justify-between">
+                    <span><span class="font-bold mr-1">(3)</span>次のア〜ウの中で<b class="underline">いちばん速いもの</b>を選びなさい。</span>
+                    <div class="ans-box ans-box-sm"><span class="inline-ans-text">${sSet.ans}</span></div>
+                  </div>
+                  <div class="flex justify-between text-[10px] pt-1 border-t border-slate-100">
+                    <span><b>ア</b> ${sSet.a}</span><span><b>イ</b> ${sSet.b}</span><span><b>ウ</b> ${sSet.c}</span>
+                  </div>
+                </div>
+
+                <!-- (6) 単位量あたり会話選択 -->
+                <div class="q-card flex flex-col justify-between text-[9.5px]">
+                  <div class="flex items-center justify-between gap-1">
+                    <span class="font-bold">(4) 鶴を折る速さを比べた式から正しい説明を選べ。</span>
+                    <div class="ans-box ans-box-sm shrink-0"><span class="inline-ans-text">${unitQ.ans}</span></div>
+                  </div>
+                  <div class="text-slate-700 font-semibold">${unitQ.expr}</div>
+                  <div class="leading-tight text-[9px]">${unitQ.opts}</div>
+                </div>
+
+                <!-- (4) 道のりSVG付き速さ1 -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div class="flex items-center justify-between gap-1">
+                    <span><span class="font-bold mr-1">(5)</span>同じ速さで図書館から学校まで歩くとあと何分？</span>
+                    <div class="shrink-0"><div class="ans-box ans-box-sm"><span class="inline-ans-text">${t4b}</span></div>分</div>
+                  </div>
+                  <svg width="246" height="40" viewBox="0 0 246 40" class="math-svg mx-auto">
+                    <line x1="18" y1="20" x2="228" y2="20" stroke="#111827" stroke-width="1.5"/>
+                    <circle cx="18" cy="20" r="3" fill="#111827"/><circle cx="90" cy="20" r="3" fill="#111827"/><circle cx="228" cy="20" r="3" fill="#111827"/>
+                    <text x="54" y="13" font-size="8.5" text-anchor="middle" class="svg-label">${d4a}m</text>
+                    <text x="159" y="13" font-size="8.5" text-anchor="middle" class="svg-label">${d4b}m</text>
+                    <text x="18" y="34" font-size="8" text-anchor="middle" class="svg-label">家</text>
+                    <text x="90" y="34" font-size="8" text-anchor="middle" class="svg-label">図書館</text>
+                    <text x="228" y="34" font-size="8" text-anchor="middle" class="svg-label">学校</text>
+                    <text x="54" y="33" font-size="8" text-anchor="middle" fill="#475569">${t4a}分</text>
+                    <text x="159" y="33" font-size="8" text-anchor="middle" fill="#475569">？分</text>
+                  </svg>
+                </div>
+
+                <!-- (5) 道のりSVG付き速さ2 -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div class="flex items-center justify-between gap-1">
+                    <span><span class="font-bold mr-1">(6)</span>分速<b>${spd5}m</b>で <b>${t5}分間</b>歩いたときの道のりは何m？</span>
+                    <div class="shrink-0"><div class="ans-box ans-box-sm"><span class="inline-ans-text">${d5}</span></div>m</div>
+                  </div>
+                  <svg width="246" height="40" viewBox="0 0 246 40" class="math-svg mx-auto">
+                    <line x1="20" y1="20" x2="226" y2="20" stroke="#111827" stroke-width="1.5" marker-end="url(#arrow-end)"/>
+                    <circle cx="20" cy="20" r="3" fill="#111827"/><circle cx="218" cy="20" r="3" fill="#111827"/>
+                    <text x="120" y="12" font-size="8.5" text-anchor="middle" class="svg-label">分速${spd5}m × ${t5}分 ＝ ？m</text>
+                    <text x="20" y="34" font-size="8" text-anchor="middle" class="svg-label">出発</text>
+                    <text x="218" y="34" font-size="8" text-anchor="middle" class="svg-label">到着</text>
+                  </svg>
+                </div>
+
+                <!-- (7) 縮尺地図SVG1 -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <svg width="144" height="66" viewBox="0 0 144 66" class="math-svg shrink-0 border border-slate-300 rounded bg-slate-50">
+                    ${buildGridSVG(144, 66, 22)}
+                    <rect x="3" y="3" width="60" height="13" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="0.8"/>
+                    <text x="33" y="12" font-size="7.5" text-anchor="middle" font-weight="bold">1/${sc7}</text>
+                    <polyline points="16,48 72,20 128,46" fill="none" class="svg-outline"/>
+                    <circle cx="16" cy="48" r="3" fill="#111827"/><circle cx="72" cy="20" r="3" fill="#111827"/><circle cx="128" cy="46" r="3" fill="#111827"/>
+                    <text x="16" y="61" font-size="8" text-anchor="middle" class="svg-label">駅A</text>
+                    <text x="72" y="14" font-size="8" text-anchor="middle" class="svg-label">B</text>
+                    <text x="128" y="60" font-size="8" text-anchor="middle" class="svg-label">校C</text>
+                    <text x="40" y="31" font-size="8.5" class="svg-label">${ab7}cm</text>
+                    <text x="102" y="30" font-size="8.5" class="svg-label">${bc7}cm</text>
+                  </svg>
+                  <div class="flex flex-col justify-between h-full">
+                    <div class="leading-tight"><span class="font-bold">(7)</span> 駅AからBを通って学校Cまでの<b class="underline">実際の道のり</b>は何mですか。</div>
+                    <div class="flex justify-end items-center gap-1"><div class="ans-box"><span class="inline-ans-text">${realM7}</span></div>m</div>
+                  </div>
+                </div>
+
+                <!-- (8) 縮尺地図SVG2 -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <svg width="132" height="66" viewBox="0 0 132 66" class="math-svg shrink-0 border border-slate-300 rounded bg-slate-50">
+                    ${buildGridSVG(132, 66, 22)}
+                    <rect x="3" y="3" width="58" height="13" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="0.8"/>
+                    <text x="32" y="12" font-size="7.5" text-anchor="middle" font-weight="bold">1/${sc8}</text>
+                    <line x1="18" y1="42" x2="114" y2="42" class="svg-outline"/>
+                    <circle cx="18" cy="42" r="3" fill="#111827"/><circle cx="114" cy="42" r="3" fill="#111827"/>
+                    <text x="66" y="35" font-size="8.5" text-anchor="middle" class="svg-label">実際 ${realKm8}km</text>
+                    <text x="66" y="56" font-size="8" text-anchor="middle" fill="#475569">地図上は何cm？</text>
+                  </svg>
+                  <div class="flex flex-col justify-between h-full">
+                    <div class="leading-tight"><span class="font-bold">(8)</span> 実際 <b>${realKm8}km</b> の道路は、1/${sc8}の縮図上では何cmですか。</div>
+                    <div class="flex justify-end items-center gap-1"><div class="ans-box"><span class="inline-ans-text">${mapCm8}</span></div>cm</div>
+                  </div>
+                </div>
+
+                <!-- (9) 拡大図SVG・角と性質 -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <svg width="150" height="68" viewBox="0 0 150 68" class="math-svg shrink-0">
+                    <polygon points="16,28 42,28 50,56 8,56" fill="url(#dot-pattern)" class="svg-outline"/>
+                    <text x="11" y="25" font-size="8" class="svg-label">A</text><text x="2" y="61" font-size="8" class="svg-label">B</text>
+                    <text x="27" y="42" font-size="8" class="svg-label">${angA}°</text>
+                    <line x1="56" y1="42" x2="74" y2="42" stroke="#475569" stroke-width="1.2" marker-end="url(#arrow-end)"/>
+                    <text x="65" y="37" font-size="7.5" text-anchor="middle" class="svg-label">${mag}倍</text>
+                    <polygon points="94,10 132,10 144,58 82,58" fill="url(#dot-pattern)" class="svg-outline"/>
+                    <text x="87" y="10" font-size="8" class="svg-label">E</text><text x="76" y="62" font-size="8" class="svg-label">F</text>
+                  </svg>
+                  <div class="flex flex-col justify-between h-full">
+                    <div class="leading-tight"><span class="font-bold">(9)</span> 台形EFGHはABCDの<b>${mag}倍の拡大図</b>。角Eの大きさは何°ですか。</div>
+                    <div class="flex justify-end items-center gap-1"><div class="ans-box ans-box-sm"><span class="inline-ans-text">${angA}</span></div>度</div>
+                  </div>
+                </div>
+
+                <!-- (10) 拡大図・辺の長さ -->
+                <div class="q-card flex items-center justify-between gap-2 text-[10px]">
+                  <svg width="150" height="68" viewBox="0 0 150 68" class="math-svg shrink-0">
+                    <polygon points="16,28 42,28 50,56 8,56" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                    <text x="11" y="25" font-size="8" class="svg-label">A</text><text x="2" y="61" font-size="8" class="svg-label">B</text>
+                    <text x="5" y="44" font-size="8" class="svg-label">${sideAB}cm</text>
+                    <line x1="56" y1="42" x2="74" y2="42" stroke="#475569" stroke-width="1.2" marker-end="url(#arrow-end)"/>
+                    <text x="65" y="37" font-size="7.5" text-anchor="middle" class="svg-label">${mag}倍</text>
+                    <polygon points="94,10 132,10 144,58 82,58" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                    <text x="87" y="10" font-size="8" class="svg-label">E</text><text x="76" y="62" font-size="8" class="svg-label">F</text>
+                    <text x="86" y="38" font-size="8" class="svg-label">？cm</text>
+                  </svg>
+                  <div class="flex flex-col justify-between h-full">
+                    <div class="leading-tight"><span class="font-bold">(10)</span> (9)の図で辺AB＝<b>${sideAB}cm</b> のとき、辺EFの長さは何cmですか。</div>
+                    <div class="flex justify-end items-center gap-1"><div class="ans-box ans-box-sm"><span class="inline-ans-text">${sideEF}</span></div>cm</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            ${createSheetFooter('9')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント9【速さ・縮図と拡大図（全10問）】</h4>
+            <div class="grid grid-cols-5 gap-x-2 gap-y-0.5 text-[10px]">
+              <div>(1) ${mSpd1}km</div><div>(2) ${sSpd2}m</div><div>(3) ${sSet.ans}</div><div>(4) ${unitQ.ans}</div><div>(5) ${t4b}分</div>
+              <div>(6) ${d5}m</div><div>(7) ${realM7}m</div><div>(8) ${mapCm8}cm</div><div>(9) ${angA}度</div><div>(10) ${sideEF}cm</div>
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント10：円の面積・円周・おうぎ形・円柱（8問・2列×4行）
+    // =========================================================================
+    function generateSheet10() {
+      const d1 = pickRandom([6, 8, 10, 12, 14]);
+      const ans1 = Number((d1 * 3.14 / 2 + d1).toFixed(2));
+
+      const s2 = pickRandom([6, 8, 10, 12, 14]);
+      const r2 = s2 / 2;
+      const f2 = `${s2}×${s2}－${r2}×${r2}×3.14`;
+
+      const s3 = pickRandom([10, 16, 20]);
+      const r3 = s3 / 2;
+      const f3 = `${s3}×${s3}－${r3}×${r3}×3.14`;
+
+      const s4 = pickRandom([4, 6, 8, 10]);
+      const ans4 = Number(((s4 * s4 * 3.14 / 4 - (s4 * s4) / 2) * 2).toFixed(2));
+
+      const d5 = pickRandom([4, 6, 8, 10]);
+      const h5 = randInt(5, 9);
+      const f5 = `${d5}×3.14`;
+
+      const r6 = pickRandom([3, 4, 5]);
+      const h6 = randInt(4, 8);
+      const ans6 = Number((r6 * r6 * 3.14 * h6).toFixed(2));
+
+      const r7out = pickRandom([6, 8, 10]);
+      const r7in = r7out - pickRandom([2, 3, 4]);
+      const f7 = `${r7out}×${r7out}×3.14－${r7in}×${r7in}×3.14`;
+
+      const s8 = pickRandom([6, 8, 10, 12]);
+      const f8 = `${s8}×${s8}－${s8}×${s8}×3.14÷4`;
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-10" data-unit="10">
+            ${createSheetHeader(10, '【大問16〜18特訓】円の面積・円周・おうぎ形・円柱（全8問）', '円周率は3.14。「●」は円の中心。式のみの問題は計算しなくてOK！', 8)}
+            <div class="sheet-body">
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 flex-1 min-h-0" style="grid-template-rows: repeat(4, minmax(0, 1fr));">
+                <!-- (1) 半円のまわりの長さ -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(1)</span>直径 ${d1}cmの半円の<b class="underline">まわりの長さ</b>を求めなさい。</div>
+                  <div class="flex items-center justify-between gap-2">
+                    <svg width="136" height="68" viewBox="0 0 136 68" class="math-svg">
+                      <path d="M 22,48 A 46,46 0 0,1 114,48 Z" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                      <circle cx="68" cy="48" r="2.3" fill="#111827"/>
+                      <line x1="22" y1="57" x2="114" y2="57" stroke="#475569" stroke-width="0.9" marker-start="url(#arrow-end)" marker-end="url(#arrow-end)"/>
+                      <text x="68" y="62" font-size="9" text-anchor="middle" class="svg-label">${d1}cm</text>
+                    </svg>
+                    <div class="shrink-0"><div class="ans-box"><span class="inline-ans-text">${ans1}</span></div> cm</div>
+                  </div>
+                </div>
+
+                <!-- (2) 正方形−内接円（式） -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(2)</span>1辺 ${s2}cmの正方形と内接円。色部分の<b class="underline">面積の式</b>を書け。</div>
+                  <div class="flex items-center justify-between gap-1">
+                    <svg width="90" height="72" viewBox="0 0 90 72" class="math-svg shrink-0">
+                      <rect x="16" y="4" width="54" height="54" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                      <circle cx="43" cy="31" r="27" fill="#ffffff" class="svg-outline"/>
+                      <circle cx="43" cy="31" r="2" fill="#111827"/>
+                      <line x1="43" y1="31" x2="70" y2="31" class="svg-dim-line"/>
+                      <text x="56" y="28" font-size="8" text-anchor="middle" class="svg-label">${r2}cm</text>
+                      <text x="43" y="68" font-size="8.5" text-anchor="middle" class="svg-label">${s2}cm</text>
+                    </svg>
+                    <div class="shrink-0">式:<div class="ans-box ans-box-lg"><span class="inline-ans-text text-[9.5px]">${f2}</span></div></div>
+                  </div>
+                </div>
+
+                <!-- (3) 正方形−四分円4つ（式） -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(3)</span>1辺 ${s3}cmの正方形に四分円4つ。色部分の<b class="underline">面積の式</b>を書け。</div>
+                  <div class="flex items-center justify-between gap-1">
+                    <svg width="96" height="72" viewBox="0 0 96 72" class="math-svg shrink-0">
+                      <rect x="16" y="4" width="54" height="54" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                      <path d="M 16,4 L 43,4 A 27,27 0 0,1 16,31 Z" fill="#ffffff" class="svg-outline"/>
+                      <path d="M 70,4 L 70,31 A 27,27 0 0,1 43,4 Z" fill="#ffffff" class="svg-outline"/>
+                      <path d="M 70,58 L 43,58 A 27,27 0 0,1 70,31 Z" fill="#ffffff" class="svg-outline"/>
+                      <path d="M 16,58 L 16,31 A 27,27 0 0,1 43,58 Z" fill="#ffffff" class="svg-outline"/>
+                      <circle cx="16" cy="4" r="1.8" fill="#111827"/><circle cx="70" cy="4" r="1.8" fill="#111827"/>
+                      <circle cx="70" cy="58" r="1.8" fill="#111827"/><circle cx="16" cy="58" r="1.8" fill="#111827"/>
+                      <text x="43" y="68" font-size="8.5" text-anchor="middle" class="svg-label">${s3}cm</text>
+                      <text x="82" y="21" font-size="8" text-anchor="middle" class="svg-label">${r3}cm</text>
+                    </svg>
+                    <div class="shrink-0">式:<div class="ans-box ans-box-lg"><span class="inline-ans-text text-[9.5px]">${f3}</span></div></div>
+                  </div>
+                </div>
+
+                <!-- (4) ラグビーボール型（面積） -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(4)</span>1辺 ${s4}cmの正方形に四分円2つ。色部分の<b class="underline">面積</b>を求めよ。</div>
+                  <div class="flex items-center justify-between gap-2">
+                    <svg width="90" height="72" viewBox="0 0 90 72" class="math-svg shrink-0">
+                      <rect x="16" y="4" width="54" height="54" fill="#ffffff" class="svg-outline"/>
+                      <path d="M 16,4 A 54,54 0 0,1 70,58 A 54,54 0 0,1 16,4 Z" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                      <polyline points="16,51 23,51 23,58" fill="none" stroke="#111827" stroke-width="1"/>
+                      <polyline points="70,11 63,11 63,4" fill="none" stroke="#111827" stroke-width="1"/>
+                      <text x="43" y="68" font-size="8.5" text-anchor="middle" class="svg-label">${s4}cm</text>
+                    </svg>
+                    <div class="shrink-0"><div class="ans-box"><span class="inline-ans-text">${ans4}</span></div> cm²</div>
+                  </div>
+                </div>
+
+                <!-- (5) 円柱の展開図（直径24pxに対し側面幅75px ≒ 3.14倍） -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(5)</span>円柱の展開図で、辺ADの長さを求める<b class="underline">式</b>を書け。</div>
+                  <div class="flex items-center justify-between gap-1">
+                    <svg width="144" height="82" viewBox="0 0 144 82" class="math-svg shrink-0">
+                      <circle cx="54" cy="14" r="12" fill="url(#dot-pattern)" class="svg-outline"/>
+                      <line x1="42" y1="14" x2="66" y2="14" class="svg-dim-line"/>
+                      <text x="70" y="17" font-size="8.5" class="svg-label">直径${d5}cm</text>
+                      <rect x="26" y="26" width="75" height="30" fill="#ffffff" class="svg-outline"/>
+                      <circle cx="54" cy="68" r="12" fill="url(#dot-pattern)" class="svg-outline"/>
+                      <text x="17" y="29" class="svg-vertex">A</text>
+                      <text x="104" y="29" class="svg-vertex">D</text>
+                      <text x="17" y="60" class="svg-vertex">B</text>
+                      <text x="104" y="60" class="svg-vertex">C</text>
+                      <text x="122" y="45" font-size="8.5" text-anchor="middle" class="svg-label">${h5}cm</text>
+                    </svg>
+                    <div class="shrink-0">式:<div class="ans-box ans-box-md"><span class="inline-ans-text">${f5}</span></div></div>
+                  </div>
+                </div>
+
+                <!-- (6) 円柱の体積 -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(6)</span>底面の半径 ${r6}cm、高さ ${h6}cmの円柱の<b class="underline">体積</b>を求めよ。</div>
+                  <div class="flex items-center justify-between gap-2">
+                    <svg width="110" height="74" viewBox="0 0 110 74" class="math-svg shrink-0">
+                      <path d="M 22,56 A 26,9 0 0,0 74,56" fill="none" class="svg-outline"/>
+                      <path d="M 22,56 A 26,9 0 0,1 74,56" class="svg-hidden"/>
+                      <line x1="22" y1="18" x2="22" y2="56" class="svg-outline"/>
+                      <line x1="74" y1="18" x2="74" y2="56" class="svg-outline"/>
+                      <ellipse cx="48" cy="18" rx="26" ry="9" fill="url(#dot-pattern)" class="svg-outline"/>
+                      <circle cx="48" cy="18" r="1.8" fill="#111827"/>
+                      <line x1="48" y1="18" x2="74" y2="18" class="svg-dim-line"/>
+                      <text x="61" y="14" font-size="8.5" text-anchor="middle" class="svg-label">${r6}cm</text>
+                      <text x="90" y="41" font-size="8.5" text-anchor="middle" class="svg-label">${h6}cm</text>
+                    </svg>
+                    <div class="shrink-0"><div class="ans-box"><span class="inline-ans-text">${ans6}</span></div> cm³</div>
+                  </div>
+                </div>
+
+                <!-- (7) ドーナツ型の面積（式） -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(7)</span>半径 ${r7out}cmと ${r7in}cmの同心円。色部分の<b class="underline">面積の式</b>を書け。</div>
+                  <div class="flex items-center justify-between gap-1">
+                    <svg width="82" height="72" viewBox="0 0 82 72" class="math-svg shrink-0">
+                      <circle cx="38" cy="36" r="30" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                      <circle cx="38" cy="36" r="16" fill="#ffffff" class="svg-outline"/>
+                      <circle cx="38" cy="36" r="2" fill="#111827"/>
+                      <line x1="38" y1="36" x2="68" y2="36" class="svg-dim-line"/>
+                      <line x1="38" y1="36" x2="38" y2="20" class="svg-dim-line"/>
+                      <text x="58" y="33" font-size="8" text-anchor="middle" class="svg-label">${r7out}cm</text>
+                      <text x="38" y="29" font-size="7.5" text-anchor="middle" class="svg-label">${r7in}</text>
+                    </svg>
+                    <div class="shrink-0">式:<div class="ans-box ans-box-xl"><span class="inline-ans-text text-[9px]">${f7}</span></div></div>
+                  </div>
+                </div>
+
+                <!-- (8) 正方形−四分円1つ（式） -->
+                <div class="q-card flex flex-col justify-between text-[10px]">
+                  <div><span class="font-bold mr-1">(8)</span>1辺 ${s8}cmの正方形と四分円。色部分の<b class="underline">面積の式</b>を書け。</div>
+                  <div class="flex items-center justify-between gap-1">
+                    <svg width="88" height="72" viewBox="0 0 88 72" class="math-svg shrink-0">
+                      <rect x="16" y="4" width="54" height="54" fill="url(#diagonal-hatch)" class="svg-outline"/>
+                      <path d="M 16,58 L 16,4 A 54,54 0 0,1 70,58 Z" fill="#ffffff" class="svg-outline"/>
+                      <polyline points="16,51 23,51 23,58" fill="none" stroke="#111827" stroke-width="1"/>
+                      <circle cx="16" cy="58" r="2.2" fill="#111827"/>
+                      <text x="43" y="68" font-size="8.5" text-anchor="middle" class="svg-label">${s8}cm</text>
+                    </svg>
+                    <div class="shrink-0">式:<div class="ans-box ans-box-xl"><span class="inline-ans-text text-[9px]">${f8}</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            ${createSheetFooter('10')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント10【円の面積・円周・おうぎ形・円柱（全8問）】</h4>
+            <div class="grid grid-cols-2 gap-x-2 gap-y-0.5 text-[10px]">
+              <div>(1) ${ans1}cm</div><div>(2) ${f2}</div>
+              <div>(3) ${f3}</div><div>(4) ${ans4}cm²</div>
+              <div>(5) ${f5}</div><div>(6) ${ans6}cm³</div>
+              <div>(7) ${f7}</div><div>(8) ${f8}</div>
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // 角柱の見取図 共通ヘルパー（外向き法線ベクトルによる見える面・隠れ線自動判定）
+    // =========================================================================
+    function prismDrawing(P, d, label, labelPos) {
+      const n = P.length;
+      const Q = P.map(([x, y]) => [x + d[0], y + d[1]]);
+      let area = 0;
+      for (let i = 0; i < n; i++) {
+        const [x1, y1] = P[i], [x2, y2] = P[(i + 1) % n];
+        area += x1 * y2 - x2 * y1;
+      }
+      const sg = area > 0 ? 1 : -1;
+      const vis = P.map((p, i) => {
+        const q = P[(i + 1) % n];
+        const nx = sg * (q[1] - p[1]), ny = -sg * (q[0] - p[0]);
+        return nx * d[0] + ny * d[1] > 0;
+      });
+      const pt = a => a.map(v => v.join(',')).join(' ');
+      let s = '';
+      // 見える側面（先に描く）
+      P.forEach((p, i) => {
+        if (vis[i]) {
+          const j = (i + 1) % n;
+          s += `<polygon points="${pt([P[i], P[j], Q[j], Q[i]])}" fill="#ffffff" class="svg-outline"/>`;
+        }
+      });
+      // 前面（底面）
+      s += `<polygon points="${pt(P)}" fill="url(#dot-pattern)" class="svg-outline"/>`;
+      // 隠れ線（破線）
+      for (let i = 0; i < n; i++) {
+        const j = (i + 1) % n, prev = (i - 1 + n) % n;
+        if (!vis[prev] && !vis[i]) {
+          s += `<line x1="${P[i][0]}" y1="${P[i][1]}" x2="${Q[i][0]}" y2="${Q[i][1]}" class="svg-hidden"/>`;
+        }
+        if (!vis[i]) {
+          s += `<line x1="${Q[i][0]}" y1="${Q[i][1]}" x2="${Q[j][0]}" y2="${Q[j][1]}" class="svg-hidden"/>`;
+        }
+      }
+      s += `<text x="${labelPos[0]}" y="${labelPos[1]}" font-size="8.5" text-anchor="middle" class="svg-label">${label}</text>`;
+      return s;
+    }
+
+    // =========================================================================
+    // プリント11：角柱の体積と説明問題（全4大問・縦4段）
+    // =========================================================================
+    function generateSheet11() {
+      // 大問1：台形柱
+      const top1 = randInt(3, 5);
+      const bot1 = top1 + randInt(3, 5);
+      const hBase1 = pickRandom([4, 6]);
+      const hPrism1 = randInt(2, 5);
+      const area1 = ((top1 + bot1) * hBase1) / 2;
+      const vol1 = area1 * hPrism1;
+      const exp1 = `底面の台形の面積は(${top1}＋${bot1})×${hBase1}÷2＝${area1}(cm²)。角柱の体積は「底面積×高さ」なので、${area1}×${hPrism1}＝${vol1} になります。`;
+
+      const sc1p = Math.min(52 / bot1, 38 / hBase1);
+      const bw1 = bot1 * sc1p, tw1 = top1 * sc1p, bh1 = hBase1 * sc1p;
+      const fx1 = 10, fy1 = 72, off1 = (bw1 - tw1) / 2;
+      const prism1 = prismDrawing(
+        [[fx1, fy1], [fx1 + bw1, fy1], [fx1 + bw1 - off1, fy1 - bh1], [fx1 + off1, fy1 - bh1]],
+        [18, -12], `高さ${hPrism1}cm`, [fx1 + bw1 + 14, fy1 + 11]
+      );
+      const s1 = Math.min(72 / bot1, 44 / hBase1);
+      const bx1 = 16, by1 = 70;
+      const tl1 = bx1 + (bot1 - top1) * s1 / 2, tt1 = by1 - hBase1 * s1;
+      const base1 = `
+        <polygon points="${bx1},${by1} ${bx1 + bot1 * s1},${by1} ${tl1 + top1 * s1},${tt1} ${tl1},${tt1}" fill="url(#diagonal-hatch)" class="svg-outline"/>
+        <line x1="${tl1}" y1="${tt1}" x2="${tl1}" y2="${by1}" class="svg-hidden"/>
+        <polyline points="${tl1},${by1 - 6} ${tl1 + 6},${by1 - 6} ${tl1 + 6},${by1}" fill="none" stroke="#111827" stroke-width="1"/>
+        <text x="${tl1 + top1 * s1 / 2}" y="${tt1 - 3}" font-size="8.5" text-anchor="middle" class="svg-label">${top1}cm</text>
+        <text x="${bx1 + bot1 * s1 / 2}" y="${by1 + 11}" font-size="8.5" text-anchor="middle" class="svg-label">${bot1}cm</text>
+        <text x="${tl1 + 3}" y="${(tt1 + by1) / 2 + 3}" font-size="8.5" class="svg-label">${hBase1}cm</text>
+      `;
+
+      // 大問2：L字柱
+      const wOuter = randInt(6, 8);
+      const hOuter = randInt(5, 7);
+      const wCut = randInt(2, 3);
+      const hCut = randInt(2, 3);
+      const hPrism2 = randInt(3, 6);
+      const area2 = wOuter * hOuter - wCut * hCut;
+      const vol2 = area2 * hPrism2;
+      const exp2 = `底面の面積は大きな長方形から欠けた部分をひき、${wOuter}×${hOuter}－${wCut}×${hCut}＝${area2}(cm²)。高さ${hPrism2}cmをかけて、${area2}×${hPrism2}＝${vol2} になります。`;
+
+      const sc2 = Math.min(48 / wOuter, 38 / hOuter);
+      const W2 = wOuter * sc2, H2 = hOuter * sc2, wc = wCut * sc2, hc = hCut * sc2;
+      const fx2 = 10, fy2 = 72;
+      const prism2 = prismDrawing(
+        [[fx2, fy2 - H2], [fx2 + W2 - wc, fy2 - H2], [fx2 + W2 - wc, fy2 - H2 + hc], [fx2 + W2, fy2 - H2 + hc], [fx2 + W2, fy2], [fx2, fy2]],
+        [16, -11], `高さ${hPrism2}cm`, [fx2 + W2 + 13, fy2 + 11]
+      );
+      const s2 = Math.min(58 / wOuter, 44 / hOuter);
+      const bx2 = 22, by2 = 70, BW2 = wOuter * s2, BH2 = hOuter * s2, bwc = wCut * s2, bhc = hCut * s2;
+      const base2 = `
+        <polygon points="${bx2},${by2 - BH2} ${bx2 + BW2 - bwc},${by2 - BH2} ${bx2 + BW2 - bwc},${by2 - BH2 + bhc} ${bx2 + BW2},${by2 - BH2 + bhc} ${bx2 + BW2},${by2} ${bx2},${by2}" fill="url(#diagonal-hatch)" class="svg-outline"/>
+        <polyline points="${bx2 + BW2 - bwc},${by2 - BH2} ${bx2 + BW2},${by2 - BH2} ${bx2 + BW2},${by2 - BH2 + bhc}" class="svg-dim-line" fill="none"/>
+        <polyline points="${bx2},${by2 - 5} ${bx2 + 5},${by2 - 5} ${bx2 + 5},${by2}" fill="none" stroke="#111827" stroke-width="1"/>
+        <text x="${bx2 - 3}" y="${by2 - BH2 / 2 + 3}" font-size="8.5" text-anchor="end" class="svg-label">${hOuter}cm</text>
+        <text x="${bx2 + BW2 / 2}" y="${by2 + 11}" font-size="8.5" text-anchor="middle" class="svg-label">${wOuter}cm</text>
+        <text x="${bx2 + BW2 - bwc / 2}" y="${by2 - BH2 - 3}" font-size="8" text-anchor="middle" class="svg-label">${wCut}cm</text>
+        <text x="${bx2 + BW2 + 2}" y="${by2 - BH2 + bhc / 2 + 3}" font-size="8" class="svg-label">${hCut}cm</text>
+      `;
+
+      // 大問3：五角柱（長方形＋三角形）
+      const wRect = randInt(4, 6);
+      const hRect = randInt(3, 5);
+      const hTri = pickRandom([2, 4]);
+      const hPrism3 = randInt(3, 6);
+      const area3 = wRect * hRect + (wRect * hTri) / 2;
+      const vol3 = area3 * hPrism3;
+      const exp3 = `底面の五角形を長方形と三角形に分けると、${wRect}×${hRect}＋${wRect}×${hTri}÷2＝${area3}(cm²)。高さ${hPrism3}cmをかけて、${area3}×${hPrism3}＝${vol3} になります。`;
+
+      const sc3 = Math.min(46 / wRect, 44 / (hRect + hTri));
+      const W3 = wRect * sc3, R3 = hRect * sc3, T3 = hTri * sc3;
+      const fx3 = 12, fy3 = 73;
+      const prism3 = prismDrawing(
+        [[fx3, fy3], [fx3 + W3, fy3], [fx3 + W3, fy3 - R3], [fx3 + W3 / 2, fy3 - R3 - T3], [fx3, fy3 - R3]],
+        [16, -9], `高さ${hPrism3}cm`, [fx3 + W3 + 13, fy3 + 11]
+      );
+      const cx3 = 54, s3 = Math.min(58 / wRect, 45 / (hRect + hTri));
+      const W3b = wRect * s3, R3b = hRect * s3, T3b = hTri * s3;
+      const bx3b = cx3 - W3b / 2, yr3b = 70 - R3b, ya3b = yr3b - T3b;
+      const base3 = `
+        <polygon points="${bx3b},70 ${bx3b + W3b},70 ${bx3b + W3b},${yr3b} ${cx3},${ya3b} ${bx3b},${yr3b}" fill="url(#diagonal-hatch)" class="svg-outline"/>
+        <line x1="${bx3b}" y1="${yr3b}" x2="${bx3b + W3b}" y2="${yr3b}" class="svg-hidden"/>
+        <line x1="${cx3}" y1="${ya3b}" x2="${cx3}" y2="${yr3b}" class="svg-hidden"/>
+        <polyline points="${cx3},${yr3b - 5} ${cx3 + 5},${yr3b - 5} ${cx3 + 5},${yr3b}" fill="none" stroke="#111827" stroke-width="1"/>
+        <text x="${cx3}" y="81" font-size="8.5" text-anchor="middle" class="svg-label">${wRect}cm</text>
+        <text x="${bx3b - 3}" y="${(yr3b + 70) / 2 + 3}" font-size="8.5" text-anchor="end" class="svg-label">${hRect}cm</text>
+        <text x="${cx3 + 4}" y="${(ya3b + yr3b) / 2 + 3}" font-size="8.5" class="svg-label">${hTri}cm</text>
+      `;
+
+      // 大問4：平行四辺形または直角三角形の角柱（毎回ランダム切替）
+      const type4 = pickRandom(['para', 'tri']);
+      let title4, vol4, exp4, prism4, base4;
+      if (type4 === 'para') {
+        const b4 = randInt(5, 8), h4 = randInt(3, 5), hp4 = randInt(3, 6);
+        const a4 = b4 * h4;
+        vol4 = a4 * hp4;
+        title4 = `底面が平行四辺形で、高さが ${hp4}cm の四角柱があります。体積の求め方を式や言葉で説明し、答えを求めなさい。`;
+        exp4 = `底面の平行四辺形の面積は${b4}×${h4}＝${a4}(cm²)。角柱の体積は「底面積×高さ」なので、${a4}×${hp4}＝${vol4} になります。`;
+        const sc4 = Math.min(44 / b4, 36 / h4);
+        const W4 = b4 * sc4, H4 = h4 * sc4, skew = 11;
+        const fx4 = 8, fy4 = 72;
+        prism4 = prismDrawing(
+          [[fx4, fy4], [fx4 + W4, fy4], [fx4 + W4 + skew, fy4 - H4], [fx4 + skew, fy4 - H4]],
+          [16, -11], `高さ${hp4}cm`, [fx4 + W4 + 14, fy4 + 11]
+        );
+        const s4 = Math.min(54 / b4, 42 / h4);
+        const bx4 = 16, by4 = 70, BW4 = b4 * s4, BH4 = h4 * s4, sk4 = 14;
+        base4 = `
+          <polygon points="${bx4},${by4} ${bx4 + BW4},${by4} ${bx4 + BW4 + sk4},${by4 - BH4} ${bx4 + sk4},${by4 - BH4}" fill="url(#diagonal-hatch)" class="svg-outline"/>
+          <line x1="${bx4 + sk4}" y1="${by4 - BH4}" x2="${bx4 + sk4}" y2="${by4}" class="svg-hidden"/>
+          <polyline points="${bx4 + sk4},${by4 - 6} ${bx4 + sk4 + 6},${by4 - 6} ${bx4 + sk4 + 6},${by4}" fill="none" stroke="#111827" stroke-width="1"/>
+          <text x="${bx4 + BW4 / 2}" y="${by4 + 11}" font-size="8.5" text-anchor="middle" class="svg-label">${b4}cm</text>
+          <text x="${bx4 + sk4 + 4}" y="${by4 - BH4 / 2 + 3}" font-size="8.5" class="svg-label">${h4}cm</text>
+        `;
+      } else {
+        const b4 = pickRandom([4, 6, 8]), h4 = randInt(4, 7), hp4 = randInt(3, 6);
+        const a4 = (b4 * h4) / 2;
+        vol4 = a4 * hp4;
+        title4 = `底面が直角三角形で、高さが ${hp4}cm の三角柱があります。体積の求め方を式や言葉で説明し、答えを求めなさい。`;
+        exp4 = `底面の三角形の面積は${b4}×${h4}÷2＝${a4}(cm²)。角柱の体積は「底面積×高さ」なので、${a4}×${hp4}＝${vol4} になります。`;
+        const sc4 = Math.min(48 / b4, 40 / h4);
+        const W4 = b4 * sc4, H4 = h4 * sc4;
+        const fx4 = 12, fy4 = 72;
+        prism4 = prismDrawing(
+          [[fx4, fy4], [fx4 + W4, fy4], [fx4, fy4 - H4]],
+          [18, -12], `高さ${hp4}cm`, [fx4 + W4 + 14, fy4 + 11]
+        );
+        const s4 = Math.min(62 / b4, 44 / h4);
+        const bx4 = 24, by4 = 70, BW4 = b4 * s4, BH4 = h4 * s4;
+        base4 = `
+          <polygon points="${bx4},${by4} ${bx4 + BW4},${by4} ${bx4},${by4 - BH4}" fill="url(#diagonal-hatch)" class="svg-outline"/>
+          <polyline points="${bx4},${by4 - 6} ${bx4 + 6},${by4 - 6} ${bx4 + 6},${by4}" fill="none" stroke="#111827" stroke-width="1"/>
+          <text x="${bx4 + BW4 / 2}" y="${by4 + 11}" font-size="8.5" text-anchor="middle" class="svg-label">${b4}cm</text>
+          <text x="${bx4 - 4}" y="${by4 - BH4 / 2 + 3}" font-size="8.5" text-anchor="end" class="svg-label">${h4}cm</text>
+        `;
+      }
+
+      const items = [
+        { n: 1, title: `底面が台形で、高さが ${hPrism1}cm の四角柱があります。体積の求め方を式や言葉で説明し、答えを求めなさい。`, prism: prism1, base: base1, exp: exp1, vol: vol1 },
+        { n: 2, title: `底面がL字型で、高さが ${hPrism2}cm の角柱があります。体積の求め方を式や言葉で説明し、答えを求めなさい。`, prism: prism2, base: base2, exp: exp2, vol: vol2 },
+        { n: 3, title: `底面が下の五角形で、高さが ${hPrism3}cm の五角柱があります。体積の求め方を式や言葉で説明し、答えを求めなさい。`, prism: prism3, base: base3, exp: exp3, vol: vol3 },
+        { n: 4, title: title4, prism: prism4, base: base4, exp: exp4, vol: vol4 }
+      ];
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-11" data-unit="11">
+            ${createSheetHeader(11, '【大問17〜19特訓】角柱の体積と求め方の説明（全4大問）', '① 底面積を求める式を書く → ② 「底面積×高さ」につなげて説明しよう！', 12)}
+            <div class="sheet-body">
+              <div class="grid grid-cols-1 gap-y-2 flex-1 min-h-0" style="grid-template-rows: repeat(4, minmax(0, 1fr));">
+                ${items.map(it => `
+                  <div class="q-card flex flex-col justify-between">
+                    <div class="text-[11px] font-bold flex items-center">
+                      <span class="problem-num">${it.n}</span>
+                      <span>${it.title}</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 flex-1 min-h-0 mt-1">
+                      <div class="shrink-0 flex items-center gap-1 bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5">
+                        <svg width="104" height="86" viewBox="0 0 104 86" class="math-svg">
+                          <text x="52" y="9" font-size="8" text-anchor="middle" fill="#475569">見取図</text>
+                          ${it.prism}
+                        </svg>
+                        <svg width="104" height="86" viewBox="0 0 104 86" class="math-svg">
+                          <text x="52" y="9" font-size="8" text-anchor="middle" fill="#475569">底面の形</text>
+                          ${it.base}
+                        </svg>
+                      </div>
+                      <div class="w-full h-full flex gap-2 items-stretch">
+                        <div class="desc-box h-full"><span class="inline-ans-text">${it.exp}</span></div>
+                        <div class="shrink-0 flex flex-col justify-end items-end text-[10px]">
+                          <span class="font-bold mb-0.5">答え</span>
+                          <div><div class="ans-box"><span class="inline-ans-text">${it.vol}</span></div> cm³</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ${createSheetFooter('11')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント11【角柱の体積と説明（全4大問）】</h4>
+            <div class="text-[10px] space-y-0.5">
+              ${items.map(it => `<div>大問${it.n}：${it.vol}cm³（${it.exp}）</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // プリント12：ともなって変わる量と規則性（8問・2列×4行・全問SVG＋表）
+    // =========================================================================
+    function generateSheet12() {
+      const st1 = randInt(11, 20), val1 = 4 * st1;              // おはじき 4n
+      const st2 = randInt(12, 24), val2 = 2 * st2 + 2;          // 正方形のまわり 2n+2
+      const st3 = randInt(14, 26), val3 = 3 * st3 + 1;          // マッチ棒正方形 3n+1
+      const st4 = randInt(15, 28), val4 = 2 * st4 + 1;          // マッチ棒正三角形 2n+1
+      const st5 = randInt(10, 20), val5 = 2 * st5 + 2;          // テーブルとイス 2n+2
+      const st6 = pickRandom([6, 7, 8, 9]), val6 = (st6 * (st6 + 1)) / 2; // 階段ブロック
+      const st7 = randInt(12, 22), val7 = 2 * st7 + 1;          // 交互タイル（黒の数 or 合計）
+      const st8 = randInt(16, 30), val8 = st8 + 2;              // 正三角形連結のまわり n+2
+
+      function ohajikiSVG() {
+        let s = '';
+        const drawG = (n, ox) => {
+          for (let c = 0; c < n; c++) {
+            s += `<circle cx="${ox + c * 7}" cy="8" r="2.4" fill="#1e293b"/>`;
+            s += `<circle cx="${ox + c * 7}" cy="15" r="2.4" fill="#1e293b"/>`;
+            s += `<circle cx="${ox + c * 7}" cy="22" r="2.4" fill="#ffffff" stroke="#1e293b" stroke-width="1"/>`;
+            s += `<circle cx="${ox + c * 7}" cy="29" r="2.4" fill="#ffffff" stroke="#1e293b" stroke-width="1"/>`;
+          }
+        };
+        drawG(1, 12); drawG(2, 34); drawG(3, 66);
+        s += `<text x="12" y="40" font-size="7.5" text-anchor="middle" class="svg-label">1</text>`;
+        s += `<text x="38" y="40" font-size="7.5" text-anchor="middle" class="svg-label">2</text>`;
+        s += `<text x="73" y="40" font-size="7.5" text-anchor="middle" class="svg-label">3</text>`;
+        return s;
+      }
+
+      const blocks = [
+        {
+          n: 1,
+          q: `おはじきを並べます。<b class="underline">${val1}個</b>になるのは何番目ですか。`,
+          svg: `<svg width="98" height="44" viewBox="0 0 98 44" class="math-svg shrink-0">${ohajikiSVG()}</svg>`,
+          row1: ['番目', 1, 2, 3, 4], row2: ['個数', 4, 8, 12, 16],
+          ans: st1, unit: '番目'
+        },
+        {
+          n: 2,
+          q: `1辺1cmの正方形を横につなげます。まわりの長さが <b class="underline">${val2}cm</b> は何番目？`,
+          svg: `<svg width="110" height="44" viewBox="0 0 110 44" class="math-svg shrink-0">
+            <rect x="6" y="10" width="12" height="12" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="28" y="10" width="12" height="12" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="40" y="10" width="12" height="12" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="62" y="10" width="12" height="12" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="74" y="10" width="12" height="12" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="86" y="10" width="12" height="12" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <text x="12" y="34" font-size="7.5" text-anchor="middle" class="svg-label">1番</text>
+            <text x="40" y="34" font-size="7.5" text-anchor="middle" class="svg-label">2番</text>
+            <text x="80" y="34" font-size="7.5" text-anchor="middle" class="svg-label">3番</text>
+          </svg>`,
+          row1: ['番目', 1, 2, 3, 4], row2: ['cm', 4, 6, 8, 10],
+          ans: st2, unit: '番目'
+        },
+        {
+          n: 3,
+          q: `マッチ棒で正方形を横につなげます。<b class="underline">${val3}本</b>使うのは何番目？`,
+          svg: `<svg width="110" height="44" viewBox="0 0 110 44" class="math-svg shrink-0">
+            <rect x="6" y="10" width="12" height="12" fill="none" stroke="#111827" stroke-width="1.6"/>
+            <rect x="28" y="10" width="12" height="12" fill="none" stroke="#111827" stroke-width="1.6"/>
+            <rect x="40" y="10" width="12" height="12" fill="none" stroke="#111827" stroke-width="1.6"/>
+            <rect x="62" y="10" width="12" height="12" fill="none" stroke="#111827" stroke-width="1.6"/>
+            <rect x="74" y="10" width="12" height="12" fill="none" stroke="#111827" stroke-width="1.6"/>
+            <rect x="86" y="10" width="12" height="12" fill="none" stroke="#111827" stroke-width="1.6"/>
+            <text x="12" y="34" font-size="7.5" text-anchor="middle" class="svg-label">1番</text>
+            <text x="40" y="34" font-size="7.5" text-anchor="middle" class="svg-label">2番</text>
+            <text x="80" y="34" font-size="7.5" text-anchor="middle" class="svg-label">3番</text>
+          </svg>`,
+          row1: ['番目', 1, 2, 3, 4], row2: ['本数', 4, 7, 10, 13],
+          ans: st3, unit: '番目'
+        },
+        {
+          n: 4,
+          q: `マッチ棒で正三角形をつなげます。<b class="underline">${val4}本</b>使うのは何番目？`,
+          svg: `<svg width="110" height="44" viewBox="0 0 110 44" class="math-svg shrink-0">
+            <polygon points="14,8 22,22 6,22" fill="none" class="svg-outline"/>
+            <polygon points="38,8 46,22 30,22" fill="none" class="svg-outline"/>
+            <polygon points="38,8 54,8 46,22" fill="none" class="svg-outline"/>
+            <polygon points="72,8 80,22 64,22" fill="none" class="svg-outline"/>
+            <polygon points="72,8 88,8 80,22" fill="none" class="svg-outline"/>
+            <polygon points="88,8 96,22 80,22" fill="none" class="svg-outline"/>
+            <text x="14" y="35" font-size="7.5" text-anchor="middle" class="svg-label">1番</text>
+            <text x="42" y="35" font-size="7.5" text-anchor="middle" class="svg-label">2番</text>
+            <text x="80" y="35" font-size="7.5" text-anchor="middle" class="svg-label">3番</text>
+          </svg>`,
+          row1: ['番目', 1, 2, 3, 4], row2: ['本数', 3, 5, 7, 9],
+          ans: st4, unit: '番目'
+        },
+        {
+          n: 5,
+          q: `テーブルを横につなげてイスを並べます。イスが <b class="underline">${val5}脚</b>のときテーブルは何台？`,
+          svg: `<svg width="110" height="44" viewBox="0 0 110 44" class="math-svg shrink-0">
+            <rect x="10" y="13" width="12" height="12" fill="url(#dot-pattern)" class="svg-outline"/>
+            <circle cx="16" cy="8" r="2.2" fill="#111827"/><circle cx="16" cy="30" r="2.2" fill="#111827"/>
+            <circle cx="5" cy="19" r="2.2" fill="#111827"/><circle cx="27" cy="19" r="2.2" fill="#111827"/>
+            <rect x="48" y="13" width="12" height="12" fill="url(#dot-pattern)" class="svg-outline"/>
+            <rect x="60" y="13" width="12" height="12" fill="url(#dot-pattern)" class="svg-outline"/>
+            <circle cx="54" cy="8" r="2.2" fill="#111827"/><circle cx="66" cy="8" r="2.2" fill="#111827"/>
+            <circle cx="54" cy="30" r="2.2" fill="#111827"/><circle cx="66" cy="30" r="2.2" fill="#111827"/>
+            <circle cx="43" cy="19" r="2.2" fill="#111827"/><circle cx="77" cy="19" r="2.2" fill="#111827"/>
+            <text x="16" y="41" font-size="7.5" text-anchor="middle" class="svg-label">1台</text>
+            <text x="60" y="41" font-size="7.5" text-anchor="middle" class="svg-label">2台</text>
+          </svg>`,
+          row1: ['台数', 1, 2, 3, 4], row2: ['イス', 4, 6, 8, 10],
+          ans: st5, unit: '台'
+        },
+        {
+          n: 6,
+          q: `階段状にブロックを積みます。<b class="underline">${st6}番目</b>のブロックは全部で何個ですか。`,
+          svg: `<svg width="110" height="44" viewBox="0 0 110 44" class="math-svg shrink-0">
+            <rect x="6" y="22" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="26" y="22" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="35" y="22" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="35" y="13" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="56" y="22" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="65" y="22" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="74" y="22" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="65" y="13" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="74" y="13" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <rect x="74" y="4" width="9" height="9" fill="url(#diagonal-hatch)" class="svg-outline"/>
+            <text x="10" y="40" font-size="7.5" text-anchor="middle" class="svg-label">1番</text>
+            <text x="35" y="40" font-size="7.5" text-anchor="middle" class="svg-label">2番</text>
+            <text x="70" y="40" font-size="7.5" text-anchor="middle" class="svg-label">3番</text>
+          </svg>`,
+          row1: ['番目', 1, 2, 3, 4], row2: ['個数', 1, 3, 6, 10],
+          ans: val6, unit: '個'
+        },
+        {
+          n: 7,
+          q: `L字型にタイルを増やします。<b class="underline">${st7}番目</b>のタイルは何枚ですか。`,
+          svg: `<svg width="110" height="44" viewBox="0 0 110 44" class="math-svg shrink-0">
+            <rect x="6" y="19" width="9" height="9" fill="#1e293b"/>
+            <rect x="15" y="19" width="9" height="9" fill="#1e293b"/>
+            <rect x="6" y="10" width="9" height="9" fill="#1e293b"/>
+            <rect x="36" y="19" width="9" height="9" fill="#1e293b"/>
+            <rect x="45" y="19" width="9" height="9" fill="#1e293b"/>
+            <rect x="54" y="19" width="9" height="9" fill="#1e293b"/>
+            <rect x="36" y="10" width="9" height="9" fill="#1e293b"/>
+            <rect x="36" y="1" width="9" height="9" fill="#1e293b"/>
+            <text x="14" y="39" font-size="7.5" text-anchor="middle" class="svg-label">1番(3)</text>
+            <text x="48" y="39" font-size="7.5" text-anchor="middle" class="svg-label">2番(5)</text>
+          </svg>`,
+          row1: ['番目', 1, 2, 3, 4], row2: ['枚数', 3, 5, 7, 9],
+          ans: val7, unit: '枚'
+        },
+        {
+          n: 8,
+          q: `1辺1cmの正三角形を1列につなげます。まわりが <b class="underline">${val8}cm</b> は何個目？`,
+          svg: `<svg width="110" height="44" viewBox="0 0 110 44" class="math-svg shrink-0">
+            <polygon points="14,8 22,22 6,22" fill="url(#dot-pattern)" class="svg-outline"/>
+            <polygon points="38,8 46,22 30,22" fill="url(#dot-pattern)" class="svg-outline"/>
+            <polygon points="38,8 54,8 46,22" fill="#ffffff" class="svg-outline"/>
+            <polygon points="72,8 80,22 64,22" fill="url(#dot-pattern)" class="svg-outline"/>
+            <polygon points="72,8 88,8 80,22" fill="#ffffff" class="svg-outline"/>
+            <polygon points="88,8 96,22 80,22" fill="url(#dot-pattern)" class="svg-outline"/>
+            <text x="14" y="35" font-size="7.5" text-anchor="middle" class="svg-label">1個</text>
+            <text x="42" y="35" font-size="7.5" text-anchor="middle" class="svg-label">2個</text>
+            <text x="80" y="35" font-size="7.5" text-anchor="middle" class="svg-label">3個</text>
+          </svg>`,
+          row1: ['個数', 1, 2, 3, 4], row2: ['cm', 3, 4, 5, 6],
+          ans: st8, unit: '個目'
+        }
+      ];
+
+      return {
+        html: `
+          <section class="a4-sheet" id="sheet-12" data-unit="12">
+            ${createSheetHeader(12, '【大問18・20特訓】ともなって変わる量と規則性（全8問）', '1増えるごとにいくつ増えるかを表から見つけて、きまりの式を作ろう！', 8)}
+            <div class="sheet-body">
+              <div class="grid grid-cols-2 gap-x-2.5 gap-y-1.5 flex-1 min-h-0" style="grid-template-rows: repeat(4, minmax(0, 1fr));">
+                ${blocks.map(b => `
+                  <div class="q-card flex flex-col justify-between text-[10px]">
+                    <div class="leading-snug"><span class="font-bold mr-1">(${b.n})</span>${b.q}</div>
+                    <div class="flex items-center justify-between gap-1 my-0.5">
+                      ${b.svg}
+                      <table class="border-collapse border border-slate-400 text-center text-[9.5px] shrink-0">
+                        <tr class="bg-slate-100">${b.row1.map(v => `<td class="border border-slate-400 px-1.5 py-0.5">${v}</td>`).join('')}</tr>
+                        <tr>${b.row2.map(v => `<td class="border border-slate-400 px-1.5 py-0.5">${v}</td>`).join('')}</tr>
+                      </table>
+                    </div>
+                    <div class="flex justify-end items-center gap-1">
+                      <div class="ans-box ans-box-sm"><span class="inline-ans-text">${b.ans}</span></div>
+                      <span class="font-bold">${b.unit}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ${createSheetFooter('12')}
+          </section>
+        `,
+        answerSection: `
+          <div class="mb-2">
+            <h4 class="font-bold text-[11px] bg-slate-100 px-2 py-0.5 border-l-4 border-slate-800 mb-1">プリント12【ともなって変わる量と規則性（全8問）】</h4>
+            <div class="grid grid-cols-4 gap-x-2 gap-y-0.5 text-[10px]">
+              ${blocks.map(b => `<div>(${b.n}) ${b.ans}${b.unit}</div>`).join('')}
+            </div>
+          </div>
+        `
+      };
+    }
+
+    // =========================================================================
+    // 全15ページ（特訓12枚＋解答3枚）の生成・フィルター・イベント制御
+    // =========================================================================
+    let currentFilter = 'all';
+
+    function renderAllSheets() {
+      try {
+        const container = document.getElementById('workbook-container');
+        const generators = [
+          generateSheet1, generateSheet2, generateSheet3, generateSheet4,
+          generateSheet5, generateSheet6, generateSheet7, generateSheet8,
+          generateSheet9, generateSheet10, generateSheet11, generateSheet12
+        ];
+
+        const results = generators.map(fn => fn());
+        const sheetsHTML = results.map(r => r.html).join('');
+
+        const ans1 = results.slice(0, 4).map(r => r.answerSection).join('');
+        const ans2 = results.slice(4, 8).map(r => r.answerSection).join('');
+        const ans3 = results.slice(8, 12).map(r => r.answerSection).join('');
+
+        const makeAnsPage = (idNum, rangeLabel, bodyHtml) => `
+          <section class="a4-sheet answer-sheet-page" id="sheet-ans-${idNum}" data-unit="ans">
+            <div class="sheet-header">
+              <div class="flex items-center gap-2">
+                <span class="sheet-title-badge bg-rose-700">解答・解説プリント（${idNum}/3）</span>
+                <h2 class="text-[14px] font-black">特訓プリント ${rangeLabel} の答え</h2>
+              </div>
+              <span class="text-[10px] text-slate-600 font-bold">※「新しい数字で作り直す」で自動同期</span>
+            </div>
+            <div class="sheet-body" style="gap: 4px;">
+              ${bodyHtml}
+            </div>
+            ${createSheetFooter(`解答${idNum}`)}
+          </section>
+        `;
+
+        container.innerHTML =
+          sheetsHTML +
+          makeAnsPage(1, 'No.1〜4', ans1) +
+          makeAnsPage(2, 'No.5〜8', ans2) +
+          makeAnsPage(3, 'No.9〜12', ans3);
+
+        applyFilter(currentFilter);
+      } catch (err) {
+        console.error('プリント生成エラー:', err);
+      }
+    }
+
+    function applyFilter(filterVal) {
+      currentFilter = filterVal;
+      document.querySelectorAll('.a4-sheet').forEach(s => {
+        const u = s.getAttribute('data-unit');
+        if (filterVal === 'all' || u === filterVal) {
+          s.classList.remove('sheet-hidden-by-filter');
+          s.style.display = 'flex';
+        } else {
+          s.classList.add('sheet-hidden-by-filter');
+          s.style.display = 'none';
+        }
+      });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const f = btn.getAttribute('data-filter');
+        if (f === filterVal) {
+          btn.classList.remove('bg-slate-800', 'text-slate-200', 'bg-rose-900/80', 'text-rose-100');
+          btn.classList.add('bg-amber-400', 'text-slate-950', 'font-bold');
+        } else {
+          btn.classList.remove('bg-amber-400', 'text-slate-950', 'font-bold');
+          if (f === 'ans') {
+            btn.classList.add('bg-rose-900/80', 'text-rose-100');
+          } else {
+            btn.classList.add('bg-slate-800', 'text-slate-200');
+          }
+        }
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('opacity-0');
+      setTimeout(() => t.classList.add('opacity-0'), 2200);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAllSheets();
+
+      document.getElementById('btn-regenerate').addEventListener('click', () => {
+        renderAllSheets();
+        showToast('新しい数値で全15ページを作り直しました！');
+      });
+
+      const btnAns = document.getElementById('btn-toggle-ans');
+      const ansLabel = document.getElementById('toggle-ans-label');
+      btnAns.addEventListener('click', () => {
+        document.body.classList.toggle('hide-inline-ans');
+        const isHidden = document.body.classList.contains('hide-inline-ans');
+        ansLabel.textContent = isHidden ? '赤字解答：OFF' : '赤字解答：ON';
+        btnAns.classList.toggle('bg-rose-700', !isHidden);
+        btnAns.classList.toggle('bg-slate-700', isHidden);
+      });
+
+      document.getElementById('btn-print').addEventListener('click', () => {
+        window.print();
+      });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          applyFilter(btn.getAttribute('data-filter'));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      document.getElementById('unit-jump').addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (!val) return;
+        if (currentFilter !== 'all') {
+          applyFilter('all');
+        }
+        const el = document.getElementById(`sheet-${val}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        e.target.value = '';
+      });
+    });
+  </script>
+</body>
+</html>
